@@ -103,34 +103,34 @@
         <form id="applyForm">
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label" for="charName">Main Character Name &bull; Realm</label>
-              <input type="text" id="charName" class="form-control" placeholder="e.g. Shadowstep - Tarren Mill" required>
+              <label class="form-label" for="charName">Main Character &bull; Name</label>
+              <input type="text" id="charName" class="form-control" placeholder="e.g. Mythicrogue" required>
             </div>
             <div class="form-group">
               <label class="form-label" for="charClass">Main Character &bull; Spec</label>
-              <input type="text" id="charClass" class="form-control" placeholder="e.g. Havoc Demon Hunter" required>
+              <input type="text" id="charClass" class="form-control" placeholder="e.g. Assassination Rogue" required>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label" for="alt1Name">Alt Character 1 &bull; Name</label>
-              <input type="text" id="alt1Name" class="form-control" placeholder="e.g. Shadowpriest (Optional)">
+              <label class="form-label" for="alt1Name">Alt Character &bull; Name</label>
+              <input type="text" id="alt1Name" class="form-control" placeholder="e.g. Mythicpriest (Optional)">
             </div>
             <div class="form-group">
-              <label class="form-label" for="alt1Spec">Alt Character 1 &bull; Spec</label>
+              <label class="form-label" for="alt1Spec">Alt Character &bull; Spec</label>
               <input type="text" id="alt1Spec" class="form-control" placeholder="e.g. Shadow Priest">
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label" for="alt2Name">Alt Character 2 &bull; Name</label>
-              <input type="text" id="alt2Name" class="form-control" placeholder="e.g. Holydruid (Optional)">
+              <label class="form-label" for="alt2Name">Alt Character &bull; Name</label>
+              <input type="text" id="alt2Name" class="form-control" placeholder="e.g. Mythicdruid (Optional)">
             </div>
             <div class="form-group">
-              <label class="form-label" for="alt2Spec">Alt Character 2 &bull; Spec</label>
-              <input type="text" id="alt2Spec" class="form-control" placeholder="e.g. Restoration Druid">
+              <label class="form-label" for="alt2Spec">Alt Character &bull; Spec</label>
+              <input type="text" id="alt2Spec" class="form-control" placeholder="e.g. Balance Druid">
             </div>
           </div>
 
@@ -141,7 +141,7 @@
 
           <div class="form-group">
             <label class="form-label" for="experience">Past Raiding Experience &amp; About You</label>
-            <textarea id="experience" rows="4" class="form-control" placeholder="Briefly describe your raiding background and why you want to join Blackwing..."></textarea>
+            <textarea id="experience" rows="4" class="form-control" placeholder="Briefly describe your raiding background and why you want to join Blackwing..." required></textarea>
           </div>
 
           <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; font-size: 0.95rem; padding: 0.85rem;">
@@ -211,7 +211,7 @@ document.getElementById("applyForm").addEventListener("submit", async function (
     alt2Name: document.getElementById("alt2Name").value,
     alt2Spec: document.getElementById("alt2Spec").value,
     discordTag: document.getElementById("discordTag").value,
-    experience: document.getElementById("experience").value.trim() || "Not provided"
+    experience: document.getElementById("experience").value.trim()
   };
 
   submitButton.disabled = true;
