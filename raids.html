@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raid Info & Loot Priority | Blackwing</title>
+  <meta name="description"
+    content="Raid schedules, boss loot priorities, and official BiS lists for Blackwing.">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ðŸ‰</text></svg>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .loot-main-toggle-btn {
+      width: 100%;
+      background: rgba(229, 185, 79, 0.12);
+      border: 1px solid var(--gold-primary);
+      padding: 1.1rem 1.5rem;
+      border-radius: 6px;
+      color: var(--gold-light);
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      margin-bottom: 1rem;
+    }
+
+    .loot-main-toggle-btn:hover {
+      background: rgba(229, 185, 79, 0.22);
+      color: #ffffff;
+      box-shadow: 0 0 15px rgba(229, 185, 79, 0.25);
+    }
+
+    .loot-main-toggle-btn i.toggle-icon {
+      transition: transform var(--transition-fast);
+    }
+
+    .loot-main-toggle-btn.expanded i.toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .loot-container {
+      display: none;
+      transition: all var(--transition-normal);
+    }
+
+    .loot-container.expanded {
+      display: block;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .boss-accordion-btn {
+      width: 100%;
+      background: rgba(13, 16, 23, 0.7);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 0.9rem 1.25rem;
+      border-radius: 4px;
+      color: var(--text-primary);
+      font-family: var(--font-heading);
+      font-size: 0.98rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .boss-accordion-btn:hover {
+      border-color: var(--gold-light);
+      background: rgba(229, 185, 79, 0.08);
+      color: var(--gold-light);
+    }
+
+    .boss-accordion-btn.open {
+      border-color: var(--gold-primary);
+      background: rgba(20, 24, 34, 0.9);
+      color: var(--gold-light);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .boss-accordion-btn.open i.boss-chevron {
+      transform: rotate(180deg);
+      color: var(--gold-primary);
+    }
+
+    .boss-accordion-body {
+      display: none;
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid var(--border-gold);
+      border-top: none;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+
+    .boss-accordion-body.open {
+      display: block;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    .boss-chevron {
+      transition: transform var(--transition-fast);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="site-header" id="mainHeader">
+    <div class="nav-container">
+      <a href="index.html" class="guild-brand">
+        <div class="guild-crest"><i class="fa-solid fa-dragon"></i></div>
+        <div class="guild-info-title">
+          <span class="guild-name">BLACKWING</span>
+          <span class="guild-realm">Icecrown &bull; Warmane</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item"><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link"><i class="fa-solid fa-scroll"></i> About Us</a>
+          </li>
+          <li class="nav-item"><a href="rules.html" class="nav-link"><i class="fa-solid fa-gavel"></i> Rules</a></li>
+          <li class="nav-item"><a href="raids.html" class="nav-link active"><i class="fa-solid fa-dungeon"></i> Raid
+              Info</a></li>
+          <li class="nav-item"><a href="dkp.html" class="nav-link"><i class="fa-solid fa-coins"></i> DKP Ladder</a></li>
+          <li class="nav-item"><a href="progression.html" class="nav-link"><i class="fa-solid fa-trophy"></i>
+              Progression</a></li>
+
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="recruitment.html" class="btn-primary">
+          <i class="fa-solid fa-shield-halved"></i> Apply Now
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="main-wrapper">
+    <div class="section-header">
+      <span class="section-tag">Raid Operations &amp; Priorities</span>
+      <h1 class="section-title">Raid Information</h1>
+    </div>
+
+    <!-- GROUP 1: RAID SCHEDULE -->
+    <section class="content-panel" style="margin-bottom: 2.2rem;">
+      <h2 class="panel-title"><i class="fa-solid fa-calendar-days"></i> 1. Raid Schedule &amp; Timers</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.98rem; line-height: 1.7;">
+        Raid invites commence strictly <strong>15 minutes prior</strong> to pull. All raids start at
+        <strong>18:30 Server Time</strong> — be inside the instance portal with consumables ready and gear repaired.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;">
+
+        <!-- WEDNESDAY — clickable -->
+        <a href="progression.html" style="text-decoration: none; display: block; background: rgba(0,0,0,0.4); border: 1px solid rgba(229,185,79,0.45); border-radius: 6px; overflow: hidden; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(229,185,79,0.9)';this.style.boxShadow='0 0 18px rgba(229,185,79,0.2)'" onmouseout="this.style.borderColor='rgba(229,185,79,0.45)';this.style.boxShadow='none'">
+          <div style="background: rgba(229,185,79,0.1); border-bottom: 1px solid rgba(229,185,79,0.25); padding: 0.6rem 1.4rem; display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+              <i class="fa-solid fa-calendar-day" style="color: var(--gold-primary); font-size: 0.9rem;"></i>
+              <span style="color: var(--gold-primary); font-family: var(--font-heading); font-weight: 700; font-size: 0.88rem; letter-spacing: 0.08em; text-transform: uppercase;">Wednesday</span>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--gold-primary); font-size: 0.75rem; opacity: 0.7;"></i>
+          </div>
+          <div style="padding: 1.4rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+              <span class="dkp-rank-badge badge-core">DKP</span>
+              <span style="color: var(--gold-light); font-weight: 700; font-size: 0.85rem;"><i class="fa-solid fa-crown"></i> Core Roster</span>
+            </div>
+            <h3 style="font-family: var(--font-heading); color: var(--gold-light); font-size: 1.15rem; margin-bottom: 0.4rem;">
+              🛡️ Wednesday — ICC 25 Main
+            </h3>
+            <div style="font-size: 0.85rem; color: var(--text-secondary); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.6rem; margin-top: 0.6rem;">
+              Full main roster progression push.
+            </div>
+          </div>
+        </a>
+
+        <!-- THURSDAY — clickable -->
+        <a href="progression.html" style="text-decoration: none; display: block; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,145,0,0.45); border-radius: 6px; overflow: hidden; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(255,145,0,0.9)';this.style.boxShadow='0 0 18px rgba(255,145,0,0.2)'" onmouseout="this.style.borderColor='rgba(255,145,0,0.45)';this.style.boxShadow='none'">
+          <div style="background: rgba(255,145,0,0.08); border-bottom: 1px solid rgba(255,145,0,0.25); padding: 0.6rem 1.4rem; display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+              <i class="fa-solid fa-calendar-day" style="color: #ff9100; font-size: 0.9rem;"></i>
+              <span style="color: #ff9100; font-family: var(--font-heading); font-weight: 700; font-size: 0.88rem; letter-spacing: 0.08em; text-transform: uppercase;">Thursday</span>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square" style="color: #ff9100; font-size: 0.75rem; opacity: 0.7;"></i>
+          </div>
+          <div style="padding: 1.4rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+              <span class="dkp-rank-badge badge-trial">DKP</span>
+              <span style="color: #ff9100; font-weight: 700; font-size: 0.85rem;"><i class="fa-solid fa-dragon"></i> Heroic</span>
+            </div>
+            <h3 style="font-family: var(--font-heading); color: var(--gold-light); font-size: 1.15rem; margin-bottom: 0.4rem;">
+              🐉 Thursday — Ruby Sanctum HC
+            </h3>
+            <div style="font-size: 0.85rem; color: var(--text-secondary); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.6rem; margin-top: 0.6rem;">
+              Heroic tries.
+            </div>
+          </div>
+        </a>
+
+        <!-- FRIDAY — clickable -->
+        <a href="progression.html" style="text-decoration: none; display: block; background: rgba(0,0,0,0.4); border: 1px solid rgba(229,185,79,0.45); border-radius: 6px; overflow: hidden; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s;" onmouseover="this.style.borderColor='rgba(229,185,79,0.9)';this.style.boxShadow='0 0 18px rgba(229,185,79,0.2)'" onmouseout="this.style.borderColor='rgba(229,185,79,0.45)';this.style.boxShadow='none'">
+          <div style="background: rgba(229,185,79,0.1); border-bottom: 1px solid rgba(229,185,79,0.25); padding: 0.6rem 1.4rem; display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+              <i class="fa-solid fa-calendar-day" style="color: var(--gold-primary); font-size: 0.9rem;"></i>
+              <span style="color: var(--gold-primary); font-family: var(--font-heading); font-weight: 700; font-size: 0.88rem; letter-spacing: 0.08em; text-transform: uppercase;">Friday</span>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--gold-primary); font-size: 0.75rem; opacity: 0.7;"></i>
+          </div>
+          <div style="padding: 1.4rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+              <span class="dkp-rank-badge badge-core">DKP</span>
+              <span style="color: var(--gold-light); font-weight: 700; font-size: 0.85rem;"><i class="fa-solid fa-stopwatch"></i> Beat Timers</span>
+            </div>
+            <h3 style="font-family: var(--font-heading); color: var(--gold-light); font-size: 1.15rem; margin-bottom: 0.4rem;">
+              ⚔️ Friday — ICC 25 (8/12 Heroic)
+            </h3>
+            <div style="font-size: 0.85rem; color: var(--text-secondary); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.6rem; margin-top: 0.6rem;">
+              Beat our own timers run.
+            </div>
+          </div>
+        </a>
+
+        <!-- WEEKEND: SATURDAY + SUNDAY — not clickable, full width -->
+        <div style="grid-column: 1 / -1; background: rgba(0,0,0,0.4); border: 1px solid rgba(100,181,246,0.4); border-radius: 6px; overflow: hidden;">
+          <div style="background: rgba(100,181,246,0.08); border-bottom: 1px solid rgba(100,181,246,0.25); padding: 0.6rem 1.4rem; display: flex; align-items: center; gap: 0.6rem;">
+            <i class="fa-solid fa-moon" style="color: #64b5f6; font-size: 0.9rem;"></i>
+            <span style="color: #64b5f6; font-family: var(--font-heading); font-weight: 700; font-size: 0.88rem; letter-spacing: 0.08em; text-transform: uppercase;">Weekend</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; padding: 1.4rem; gap: 1.25rem;">
+            <!-- SATURDAY -->
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                <span class="dkp-rank-badge badge-raider">Chill Night</span>
+                <span style="color: #64b5f6; font-weight: 700; font-size: 0.85rem;"><i class="fa-solid fa-dice"></i> 10-Man</span>
+              </div>
+              <h3 style="font-family: var(--font-heading); color: var(--gold-light); font-size: 1.1rem; margin-bottom: 0.4rem;">
+                🎲 Saturday — Wildcard / Chill Night
+              </h3>
+              <div style="font-size: 0.85rem; color: var(--text-secondary); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.6rem; margin-top: 0.6rem;">
+                Chill · 10-Man · ToC · Achievements · Transmog
+              </div>
+            </div>
+            <!-- SUNDAY -->
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                <span class="dkp-rank-badge badge-core">Glory Run</span>
+                <span style="color: #ffd700; font-weight: 700; font-size: 0.85rem;"><i class="fa-solid fa-star"></i> Achievement</span>
+              </div>
+              <h3 style="font-family: var(--font-heading); color: var(--gold-light); font-size: 1.1rem; margin-bottom: 0.4rem;">
+                👑 Sunday — Bane of the Fallen King Run
+              </h3>
+              <div style="font-size: 0.85rem; color: var(--text-secondary); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.6rem; margin-top: 0.6rem;">
+                Chill · 10-Man · ToC · Achievements · Transmog · Bane
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MONDAY + TUESDAY — full-width grouped, each half clickable -->
+        <div style="grid-column: 1 / -1; background: rgba(0,0,0,0.4); border: 1px solid rgba(229,185,79,0.35); border-radius: 6px; overflow: hidden;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0;">
+
+            <!-- MONDAY -->
+            <a href="progression.html" style="text-decoration: none; display: block; border-right: 1px solid rgba(255,255,255,0.06); transition: background 0.2s;" onmouseover="this.style.background='rgba(229,185,79,0.05)'" onmouseout="this.style.background='transparent'">
+              <div style="background: rgba(229,185,79,0.1); border-bottom: 1px solid rgba(229,185,79,0.25); padding: 0.6rem 1.4rem; display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                  <i class="fa-solid fa-calendar-day" style="color: var(--gold-primary); font-size: 0.9rem;"></i>
+                  <span style="color: var(--gold-primary); font-family: var(--font-heading); font-weight: 700; font-size: 0.88rem; letter-spacing: 0.08em; text-transform: uppercase;">Monday</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--gold-primary); font-size: 0.75rem; opacity: 0.7;"></i>
+              </div>
+              <div style="padding: 1.4rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+                  <span class="dkp-rank-badge badge-raider">DKP</span>
+                  <span style="color: var(--gold-light); font-weight: 700; font-size: 0.85rem;"><i class="fa-solid fa-users"></i> Heroic</span>
+                </div>
+                <h3 style="font-family: var(--font-heading); color: var(--gold-light); font-size: 1.1rem; margin-bottom: 0.4rem;">
+                  ⚡ Monday — ICC 25 (8/12 Heroic)
+                </h3>
+                <div style="font-size: 0.85rem; color: var(--text-secondary); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.6rem; margin-top: 0.6rem;">
+                  Heroic secondary roster run.
+                </div>
+              </div>
+            </a>
+
+            <!-- TUESDAY -->
+            <a href="progression.html" style="text-decoration: none; display: block; transition: background 0.2s;" onmouseover="this.style.background='rgba(100,181,246,0.05)'" onmouseout="this.style.background='transparent'">
+              <div style="background: rgba(100,181,246,0.08); border-bottom: 1px solid rgba(100,181,246,0.25); padding: 0.6rem 1.4rem; display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                  <i class="fa-solid fa-calendar-day" style="color: #64b5f6; font-size: 0.9rem;"></i>
+                  <span style="color: #64b5f6; font-family: var(--font-heading); font-weight: 700; font-size: 0.88rem; letter-spacing: 0.08em; text-transform: uppercase;">Tuesday</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square" style="color: #64b5f6; font-size: 0.75rem; opacity: 0.7;"></i>
+              </div>
+              <div style="padding: 1.4rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+                  <span class="dkp-rank-badge badge-raider">Alt Rules</span>
+                  <span style="color: #64b5f6; font-weight: 700; font-size: 0.85rem;"><i class="fa-solid fa-shield-halved"></i> 25-Man</span>
+                </div>
+                <h3 style="font-family: var(--font-heading); color: var(--gold-light); font-size: 1.1rem; margin-bottom: 0.4rem;">
+                  🔄 Tuesday — ICC 25 Alt Run
+                </h3>
+                <div style="font-size: 0.85rem; color: var(--text-secondary); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.6rem; margin-top: 0.6rem;">
+                  Reset-day casual clear for alts.
+                </div>
+              </div>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GROUP 2: LOOT PRIORITY (COLLAPSIBLE WITH 13 BOSS SECTIONS) -->
+    <section class="content-panel" style="margin-bottom: 2.2rem;">
+      <h2 class="panel-title"><i class="fa-solid fa-gem"></i> 2. Loot Priority (ICC &amp; RS)</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 1.25rem; font-size: 0.98rem; line-height: 1.7;">
+        Loot distribution follows our Officer Council priority guidelines combined with DKP bidding. Click the bar below
+        to expand or shrink the complete 13-boss priority tables.
+      </p>
+
+      <!-- Main Collapsible Header for Loot Prio -->
+      <button class="loot-main-toggle-btn" id="lootMainToggleBtn" type="button" aria-expanded="false">
+        <span><i class="fa-solid fa-layer-group"></i> &nbsp;Toggle Loot Priority Tables (13 Bosses)</span>
+        <i class="fa-solid fa-chevron-down toggle-icon" id="lootToggleIcon"></i>
+      </button>
+
+      <!-- Collapsible Container holding 13 Boss Sections -->
+      <div class="loot-container" id="lootContainer">
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+
+          <!-- Boss 1: Lord Marrowgar -->
+          <div class="boss-section">
+            <button class="boss-accordion-btn" type="button">
+              <span><i class="fa-solid fa-skull"></i> 1. Lord Marrowgar</span>
+              <i class="fa-solid fa-chevron-down boss-chevron"></i>
+            </button>
+            <div class="boss-accordion-body">
+              <table class="loot-prio-table">
+                <thead>
+                  <tr>
+                    <th>Item Name</th>
+                    <th>Type / Slot</th>
+                    <th>Class / Spec Priority</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://wotlk.cavernoftime.com/item=50709"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Bryntroll, the Bone Arbiter</a></td>
+                    <td>2H Axe</td>
+                    <td>Unholy DK = Ret Paladin &gt; Blood DK</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://wotlk.cavernoftime.com/item=50709"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Bryntroll, the Bone Arbiter</a></td>
+                    <td>2H Axe</td>
+                    <td>Unholy DK = Ret Paladin &gt; Blood DK</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://www.wowhead.com/wotlk/search?q=Marrowgar's%20Scratching%20Choker" target="_blank"
+                        rel="noopener noreferrer" class="item-link">Marrowgar's Scratching Choker</a></td>
+                    <td>Neck</td>
+                    <td>Feral Druid = Combat Rogue &gt; MM Hunter</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://www.wowhead.com/wotlk/search?q=Corrupted%20Silverplate%20Leggings" target="_blank"
+                        rel="noopener noreferrer" class="item-link">Corrupted Silverplate Leggings</a></td>
+                    <td>Plate Legs</td>
+                    <td>Fury Warrior = Ret Paladin</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://wotlk.cavernoftime.com/item=50709"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Bryntroll, the Bone Arbiter</a></td>
+                    <td>2H Axe</td>
+                    <td>Unholy DK = Ret Paladin &gt; Blood DK</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://wotlk.cavernoftime.com/item=50709"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Bryntroll, the Bone Arbiter</a></td>
+                    <td>2H Axe</td>
+                    <td>Unholy DK = Ret Paladin &gt; Blood DK</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://wotlk.cavernoftime.com/item=50709"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Bryntroll, the Bone Arbiter</a></td>
+                    <td>2H Axe</td>
+                    <td>Unholy DK = Ret Paladin &gt; Blood DK</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://wotlk.cavernoftime.com/item=50709"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Bryntroll, the Bone Arbiter</a></td>
+                    <td>2H Axe</td>
+                    <td>Unholy DK = Ret Paladin &gt; Blood DK</td>
+                  </tr>                                                    
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Boss 2: Lady Deathwhisper -->
+          <div class="boss-section">
+            <button class="boss-accordion-btn" type="button">
+              <span><i class="fa-solid fa-skull"></i> 2. Lady Deathwhisper</span>
+              <i class="fa-solid fa-chevron-down boss-chevron"></i>
+            </button>
+            <div class="boss-accordion-body">
+              <table class="loot-prio-table">
+                <thead>
+                  <tr>
+                    <th>Item Name</th>
+                    <th>Type / Slot</th>
+                    <th>Class / Spec Priority</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Whispering%20Fanged%20Skull"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Whispering Fanged Skull</a></td>
+                    <td>Trinket</td>
+                    <td>Combat Rogue = Feral Druid &gt; Enhancement Shaman</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://www.wowhead.com/wotlk/search?q=Deathwhisper's%20Corrupted%20Insignia"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Deathwhisper's Corrupted
+                        Insignia</a></td>
+                    <td>Ring</td>
+                    <td>Fire Mage = Affliction Warlock &gt; Shadow Priest</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Ring%20of%20Rapid%20Ascent"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Ring of Rapid Ascent</a></td>
+                    <td>Ring</td>
+                    <td>Holy Paladin = Restoration Shaman &gt; Discipline Priest</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Nibelung" target="_blank"
+                        rel="noopener noreferrer" class="item-link">Nibelung</a></td>
+                    <td>2H Staff</td>
+                    <td>Affliction Warlock = Balance Druid</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Boss 3: Icecrown Gunship Battle -->
+          <div class="boss-section">
+            <button class="boss-accordion-btn" type="button">
+              <span><i class="fa-solid fa-skull"></i> 3. Icecrown Gunship Battle</span>
+              <i class="fa-solid fa-chevron-down boss-chevron"></i>
+            </button>
+            <div class="boss-accordion-body">
+              <table class="loot-prio-table">
+                <thead>
+                  <tr>
+                    <th>Item Name</th>
+                    <th>Type / Slot</th>
+                    <th>Class / Spec Priority</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Muradin's%20Spyglass"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Muradin's Spyglass</a></td>
+                    <td>Trinket</td>
+                    <td>Fire Mage = Balance Druid &gt; Shadow Priest</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Althor's%20Abacus"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Althor's Abacus</a></td>
+                    <td>Trinket</td>
+                    <td>Holy Paladin = Restoration Shaman &gt; Holy Priest</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Corpse%20Tongue%20Coin"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Corpse Tongue Coin</a></td>
+                    <td>Trinket</td>
+                    <td>Prot Paladin = Blood DK Tank</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Midnight%20Sun"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Midnight Sun</a></td>
+                    <td>1H Mace</td>
+                    <td>Holy Paladin = Restoration Shaman</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Boss 4: Deathbringer Saurfang -->
+          <div class="boss-section">
+            <button class="boss-accordion-btn" type="button">
+              <span><i class="fa-solid fa-skull"></i> 4. Deathbringer Saurfang</span>
+              <i class="fa-solid fa-chevron-down boss-chevron"></i>
+            </button>
+            <div class="boss-accordion-body">
+              <table class="loot-prio-table">
+                <thead>
+                  <tr>
+                    <th>Item Name</th>
+                    <th>Type / Slot</th>
+                    <th>Class / Spec Priority</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Deathbringer's%20Will"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Deathbringer's Will</a></td>
+                    <td>Trinket</td>
+                    <td>Combat Rogue = Feral Druid = Fury Warrior &gt; MM Hunter &gt; Frost DK</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://www.wowhead.com/wotlk/search?q=Saurfang's%20Cold-Forged%20Band" target="_blank"
+                        rel="noopener noreferrer" class="item-link">Saurfang's Cold-Forged Band</a></td>
+                    <td>Ring</td>
+                    <td>MM Hunter = Combat Rogue &gt; Feral Druid</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Blade-Tempered%20Rancor"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Blade-Tempered Rancor</a></td>
+                    <td>1H Sword</td>
+                    <td>Combat Rogue = Frost DK</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://www.wowhead.com/wotlk/search?q=Ramaladni's%20Blade%20of%20Culling" target="_blank"
+                        rel="noopener noreferrer" class="item-link">Ramaladni's Blade of Culling</a></td>
+                    <td>2H Axe</td>
+                    <td>Unholy DK = Blood DK Tank</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Boss 5: Festergut -->
+          <div class="boss-section">
+            <button class="boss-accordion-btn" type="button">
+              <span><i class="fa-solid fa-skull"></i> 5. Festergut</span>
+              <i class="fa-solid fa-chevron-down boss-chevron"></i>
+            </button>
+            <div class="boss-accordion-body">
+              <table class="loot-prio-table">
+                <thead>
+                  <tr>
+                    <th>Item Name</th>
+                    <th>Type / Slot</th>
+                    <th>Class / Spec Priority</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://www.wowhead.com/wotlk/search?q=Tiny%20Abomination%20in%20a%20Jar" target="_blank"
+                        rel="noopener noreferrer" class="item-link">Tiny Abomination in a Jar</a></td>
+                    <td>Trinket</td>
+                    <td>Ret Paladin = Enhancement Shaman = Unholy DK &gt; Rogues</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://www.wowhead.com/wotlk/search?q=Plague-Soaked%20Leather%20Boots" target="_blank"
+                        rel="noopener noreferrer" class="item-link">Plague-Soaked Leather Boots</a></td>
+                    <td>Leather Feet</td>
+                    <td>Feral Druid = Rogues &gt; Hunters</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Distant%20Land"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Distant Land</a></td>
+                    <td>Polearm</td>
+                    <td>Feral Druid Tank &gt; Hunters</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Holiday's%20Grace"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Holiday's Grace</a></td>
+                    <td>Dagger</td>
+                    <td>Assassination Rogue = Shadow Priest</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Boss 6: Rotface -->
+          <div class="boss-section">
+            <button class="boss-accordion-btn" type="button">
+              <span><i class="fa-solid fa-skull"></i> 6. Rotface</span>
+              <i class="fa-solid fa-chevron-down boss-chevron"></i>
+            </button>
+            <div class="boss-accordion-body">
+              <table class="loot-prio-table">
+                <thead>
+                  <tr>
+                    <th>Item Name</th>
+                    <th>Type / Slot</th>
+                    <th>Class / Spec Priority</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Dislodged%20Foreign%20Object"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Dislodged Foreign Object</a></td>
+                    <td>Trinket</td>
+                    <td>Fire Mage = Affliction Warlock &gt; Shadow Priest = Balance Druid</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Trauma" target="_blank"
+                        rel="noopener noreferrer" class="item-link">Trauma</a></td>
+                    <td>1H Mace</td>
+                    <td>Restoration Druid = Holy Priest &gt; Restoration Shaman</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Corpse-Impaling%20Spike"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Corpse-Impaling Spike</a></td>
+                    <td>Wand</td>
+                    <td>All Casters (Open DKP)</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Abomination's%20Bloody%20Ring"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Abomination's Bloody Ring</a></td>
+                    <td>Ring</td>
+                    <td>Ret Paladin = Fury Warrior &gt; Blood DK</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Boss 7: Professor Putricide -->
+          <div class="boss-section">
+            <button class="boss-accordion-btn" type="button">
+              <span><i class="fa-solid fa-skull"></i> 7. Professor Putricide</span>
+              <i class="fa-solid fa-chevron-down boss-chevron"></i>
+            </button>
+            <div class="boss-accordion-body">
+              <table class="loot-prio-table">
+                <thead>
+                  <tr>
+                    <th>Item Name</th>
+                    <th>Type / Slot</th>
+                    <th>Class / Spec Priority</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Astrylian's%20Sutured%20Cinch"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Astrylian's Sutured Cinch</a></td>
+                    <td>Leather Belt</td>
+                    <td>Feral Druid = Combat Rogue &gt; MM Hunter</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Unidentifiable%20Organ"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Unidentifiable Organ</a></td>
+                    <td>Trinket</td>
+                    <td>Prot Paladin = Blood DK Tank</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Last%20Word" target="_blank"
+                        rel="noopener noreferrer" class="item-link">Last Word</a></td>
+                    <td>1H Mace</td>
+                    <td>Prot Paladin = Blood DK Tank</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Flesh-Shaper's%20Gurney"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Flesh-Shaper's Gurney</a></td>
+                    <td>Shield</td>
+                    <td>Restoration Shaman = Elemental Shaman</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Boss 8: Blood Council -->
+          <div class="boss-section">
+            <button class="boss-accordion-btn" type="button">
+              <span><i class="fa-solid fa-skull"></i> 8. Blood Council</span>
+              <i class="fa-solid fa-chevron-down boss-chevron"></i>
+            </button>
+            <div class="boss-accordion-body">
+              <table class="loot-prio-table">
+                <thead>
+                  <tr>
+                    <th>Item Name</th>
+                    <th>Type / Slot</th>
+                    <th>Class / Spec Priority</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Shadow%20Silk%20Spindle"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Shadow Silk Spindle</a></td>
+                    <td>Off-Hand</td>
+                    <td>Fire Mage = Affliction Warlock = Shadow Priest</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Cryptmaker" target="_blank"
+                        rel="noopener noreferrer" class="item-link">Cryptmaker</a></td>
+                    <td>2H Mace</td>
+                    <td>Fury Warrior = Blood DK</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Taldaram's%20Soft%20Slippers"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Taldaram's Soft Slippers</a></td>
+                    <td>Cloth Feet</td>
+                    <td>Shadow Priest = Affliction Warlock</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Royal%20Crimson%20Cloak"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Royal Crimson Cloak</a></td>
+                    <td>Cloak</td>
+                    <td>Fury Warrior = Ret Paladin &gt; Frost DK</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Boss 9: Blood-Queen Lana'thel -->
+          <div class="boss-section">
+            <button class="boss-accordion-btn" type="button">
+              <span><i class="fa-solid fa-skull"></i> 9. Blood-Queen Lana'thel</span>
+              <i class="fa-solid fa-chevron-down boss-chevron"></i>
+            </button>
+            <div class="boss-accordion-body">
+              <table class="loot-prio-table">
+                <thead>
+                  <tr>
+                    <th>Item Name</th>
+                    <th>Type / Slot</th>
+                    <th>Class / Spec Priority</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://www.wowhead.com/wotlk/search?q=Blood%20Queen's%20Crimson%20Choker" target="_blank"
+                        rel="noopener noreferrer" class="item-link">Blood Queen's Crimson Choker</a></td>
+                    <td>Neck</td>
+                    <td>Fire Mage = Affliction Warlock &gt; Shadow Priest</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://www.wowhead.com/wotlk/search?q=Lana'thel's%20Chain%20of%20Flagellation"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Lana'thel's Chain of
+                        Flagellation</a></td>
+                    <td>Neck</td>
+                    <td>Ret Paladin = Fury Warrior &gt; Unholy DK</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://www.wowhead.com/wotlk/search?q=Bloodsurge%2C%20Kel'Thuzad's%20Blade%20of%20Agony"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Bloodsurge, Kel'Thuzad's Blade of
+                        Agony</a></td>
+                    <td>1H Sword</td>
+                    <td>Mage = Warlock = Holy Paladin</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Stigmatized%20Bracers"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Stigmatized Bracers</a></td>
+                    <td>Wrist</td>
+                    <td>Holy Paladin = Restoration Shaman</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Boss 10: Valithria Dreamwalker -->
+          <div class="boss-section">
+            <button class="boss-accordion-btn" type="button">
+              <span><i class="fa-solid fa-skull"></i> 10. Valithria Dreamwalker</span>
+              <i class="fa-solid fa-chevron-down boss-chevron"></i>
+            </button>
+            <div class="boss-accordion-body">
+              <table class="loot-prio-table">
+                <thead>
+                  <tr>
+                    <th>Item Name</th>
+                    <th>Type / Slot</th>
+                    <th>Class / Spec Priority</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://www.wowhead.com/wotlk/search?q=Valithria's%20Unyielding%20Grip" target="_blank"
+                        rel="noopener noreferrer" class="item-link">Valithria's Unyielding Grip</a></td>
+                    <td>Plate Hands</td>
+                    <td>Prot Paladin = Blood DK Tank</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Taiga%20Bindings"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Taiga Bindings</a></td>
+                    <td>Mail Wrist</td>
+                    <td>Restoration Shaman = Elemental Shaman</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Nightmare%20Ender"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Nightmare Ender</a></td>
+                    <td>1H Mace</td>
+                    <td>Holy Paladin = Restoration Shaman</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://www.wowhead.com/wotlk/search?q=Scourge%20Hunter's%20Vambraces" target="_blank"
+                        rel="noopener noreferrer" class="item-link">Scourge Hunter's Vambraces</a></td>
+                    <td>Mail Wrist</td>
+                    <td>MM Hunter = Enhancement Shaman</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Boss 11: Sindragosa -->
+          <div class="boss-section">
+            <button class="boss-accordion-btn" type="button">
+              <span><i class="fa-solid fa-skull"></i> 11. Sindragosa</span>
+              <i class="fa-solid fa-chevron-down boss-chevron"></i>
+            </button>
+            <div class="boss-accordion-body">
+              <table class="loot-prio-table">
+                <thead>
+                  <tr>
+                    <th>Item Name</th>
+                    <th>Type / Slot</th>
+                    <th>Class / Spec Priority</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://www.wowhead.com/wotlk/search?q=Phylactery%20of%20the%20Nameless%20Lich"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Phylactery of the Nameless Lich</a>
+                    </td>
+                    <td>Trinket</td>
+                    <td>Fire Mage = Affliction Warlock &gt; Balance Druid = Shadow Priest</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://www.wowhead.com/wotlk/search?q=Sindragosa's%20Flawless%20Fang" target="_blank"
+                        rel="noopener noreferrer" class="item-link">Sindragosa's Flawless Fang</a></td>
+                    <td>Trinket</td>
+                    <td>Prot Paladin = Blood DK Tank</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Memory%20of%20Malygos"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Memory of Malygos</a></td>
+                    <td>Ring</td>
+                    <td>Restoration Shaman = Holy Paladin = Holy Priest</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Sundial%20of%20the%20Exiled"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Sundial of the Exiled</a></td>
+                    <td>Ring</td>
+                    <td>Fire Mage = Affliction Warlock</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Boss 12: The Lich King -->
+          <div class="boss-section">
+            <button class="boss-accordion-btn" type="button">
+              <span><i class="fa-solid fa-crown"></i> 12. The Lich King</span>
+              <i class="fa-solid fa-chevron-down boss-chevron"></i>
+            </button>
+            <div class="boss-accordion-body">
+              <table class="loot-prio-table">
+                <thead>
+                  <tr>
+                    <th>Item Name</th>
+                    <th>Type / Slot</th>
+                    <th>Class / Spec Priority</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://www.wowhead.com/wotlk/search?q=Glorenzelg%2C%20High-Blade%20of%20the%20Silver%20Hand"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Glorenzelg, High-Blade of the Silver
+                        Hand</a></td>
+                    <td>2H Sword</td>
+                    <td>Fury Warrior = Blood DK &gt; Ret Paladin (after Shadowmourne)</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://www.wowhead.com/wotlk/search?q=Havoc's%20Call%2C%20Blade%20of%20Lordaeron%20Kings"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Havoc's Call, Blade of Lordaeron
+                        Kings</a></td>
+                    <td>1H Axe</td>
+                    <td>Combat Rogue = Frost DK = Enhancement Shaman</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://www.wowhead.com/wotlk/search?q=Archus%2C%20Greatstaff%20of%20Antonidas"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Archus, Greatstaff of Antonidas</a>
+                    </td>
+                    <td>2H Staff</td>
+                    <td>Restoration Druid = Holy Priest</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://www.wowhead.com/wotlk/search?q=Fal'inrush%2C%20Defender%20of%20Quel'thalas"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Fal'inrush, Defender of
+                        Quel'thalas</a></td>
+                    <td>Crossbow</td>
+                    <td>MM Hunter &gt; Rogues = Warriors</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://www.wowhead.com/wotlk/search?q=Royal%20Scepter%20of%20Terenas%20II"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Royal Scepter of Terenas II</a></td>
+                    <td>1H Mace</td>
+                    <td>Restoration Shaman = Elemental Shaman = Balance Druid</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a
+                        href="https://www.wowhead.com/wotlk/search?q=Oathbinder%2C%20Charge%20of%20the%20Ranger-General"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Oathbinder, Charge of the
+                        Ranger-General</a></td>
+                    <td>Polearm</td>
+                    <td>Feral Druid (Cat/Bear) &gt; MM Hunter</td>
+                  </tr>
+                  <tr>
+                    <td class="item-legendary"><a href="https://www.wowhead.com/wotlk/search?q=Invincible's%20Reins"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Invincible's Reins</a></td>
+                    <td>Mount</td>
+                    <td>Top DKP Bidder Auction (Open to Core Raiders)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Boss 13: Halion (The Ruby Sanctum) -->
+          <div class="boss-section">
+            <button class="boss-accordion-btn" type="button">
+              <span><i class="fa-solid fa-dragon"></i> 13. Halion (The Ruby Sanctum)</span>
+              <i class="fa-solid fa-chevron-down boss-chevron"></i>
+            </button>
+            <div class="boss-accordion-body">
+              <table class="loot-prio-table">
+                <thead>
+                  <tr>
+                    <th>Item Name</th>
+                    <th>Type / Slot</th>
+                    <th>Class / Spec Priority</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Sharpened%20Twilight%20Scale"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Sharpened Twilight Scale</a></td>
+                    <td>Trinket</td>
+                    <td>Combat Rogue = Feral Druid = Fury Warrior &gt; MM Hunter &gt; Frost DK</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Charred%20Twilight%20Scale"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Charred Twilight Scale</a></td>
+                    <td>Trinket</td>
+                    <td>Fire Mage = Affliction Warlock &gt; Shadow Priest = Balance Druid</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Glowing%20Twilight%20Scale"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Glowing Twilight Scale</a></td>
+                    <td>Trinket</td>
+                    <td>Holy Paladin = Restoration Shaman &gt; Restoration Druid</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Baltharus'%20Gift"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Baltharus' Gift</a></td>
+                    <td>Neck</td>
+                    <td>Ret Paladin = Fury Warrior &gt; Unholy DK</td>
+                  </tr>
+                  <tr>
+                    <td class="item-epic"><a href="https://www.wowhead.com/wotlk/search?q=Phasing%20Boots"
+                        target="_blank" rel="noopener noreferrer" class="item-link">Phasing Boots</a></td>
+                    <td>Cloth Feet</td>
+                    <td>Fire Mage = Affliction Warlock = Shadow Priest</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- GROUP 3: BIS LIST -->
+    <section class="content-panel" style="margin-bottom: 2rem;">
+      <h2 class="panel-title"><i class="fa-solid fa-file-lines"></i> 3. Best-in-Slot (BiS) Master Spreadsheet</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.98rem; line-height: 1.7;">
+        Review optimal gearing paths, stat caps, hit/expertise thresholds, and secondary equipment choices for every
+        class and specialization.
+      </p>
+
+      <div
+        style="background: rgba(0,0,0,0.4); border: 1px dashed var(--border-gold); padding: 2.5rem 1.5rem; border-radius: 6px; text-align: center;">
+        <i class="fa-solid fa-file-excel"
+          style="font-size: 2.8rem; color: var(--gold-primary); margin-bottom: 1rem; display: block;"></i>
+        <h3
+          style="font-family: var(--font-heading); color: var(--gold-light); font-size: 1.25rem; margin-bottom: 0.5rem;">
+          Official Blackwing BiS Master Google Doc
+        </h3>
+        <p
+          style="color: var(--text-secondary); max-width: 550px; margin: 0 auto 1.5rem auto; font-size: 0.92rem; line-height: 1.6;">
+          Continuously curated and updated by class officers following each phase patch. Click below to view the live
+          Google spreadsheet.
+        </p>
+
+        <!-- Clickable button opening Google Doc -->
+        <a href="https://docs.google.com/spreadsheets/d/1ecogJdDLeZ1-h-FEhUdxhiV2ucmOH70IlULxTMHHBks/" target="_blank"
+          rel="noopener noreferrer" class="btn-primary" style="font-size: 0.98rem; padding: 0.85rem 2rem;">
+          <i class="fa-brands fa-google-drive"></i> Open BiS Google Doc <i
+            class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.82rem; margin-left: 0.4rem;"></i>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p class="footer-copy">&copy; 2026 Blackwing Guild. GitHub Pages Ready.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Accordion handling for raids.html
+    document.addEventListener('DOMContentLoaded', () => {
+      // Main Loot Priority Section Toggle
+      const lootMainToggleBtn = document.getElementById('lootMainToggleBtn');
+      const lootContainer = document.getElementById('lootContainer');
+
+      if (lootMainToggleBtn && lootContainer) {
+        lootMainToggleBtn.addEventListener('click', () => {
+          lootMainToggleBtn.classList.toggle('expanded');
+          lootContainer.classList.toggle('expanded');
+          const isExpanded = lootContainer.classList.contains('expanded');
+          lootMainToggleBtn.setAttribute('aria-expanded', isExpanded);
+        });
+      }
+
+      // 13 Individual Boss Accordions Toggle
+      const bossButtons = document.querySelectorAll('.boss-accordion-btn');
+      bossButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.classList.toggle('open');
+          const body = btn.nextElementSibling;
+          if (body) {
+            body.classList.toggle('open');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

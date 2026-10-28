@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progression | Blackwing</title>
+  <meta name="description" content="Raid progression and kill records for Blackwing Guild.">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐉</text></svg>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .boss-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .boss-card {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      padding: 0.85rem 1.1rem;
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all var(--transition-fast);
+    }
+
+    .boss-card:hover {
+      border-color: var(--border-gold-glow);
+      background: rgba(229, 185, 79, 0.05);
+      transform: translateY(-2px);
+    }
+
+    .boss-name {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .boss-status {
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .status-defeated {
+      color: #00e676;
+    }
+
+    .status-progress {
+      color: #ff9100;
+    }
+
+    .panel-header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="site-header" id="mainHeader">
+    <div class="nav-container">
+      <a href="index.html" class="guild-brand">
+        <div class="guild-crest"><i class="fa-solid fa-dragon"></i></div>
+        <div class="guild-info-title">
+          <span class="guild-name">BLACKWING</span>
+          <span class="guild-realm">Icecrown &bull; Warmane</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item"><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link"><i class="fa-solid fa-scroll"></i> About Us</a>
+          </li>
+          <li class="nav-item"><a href="rules.html" class="nav-link"><i class="fa-solid fa-gavel"></i> Rules</a></li>
+          <li class="nav-item"><a href="raids.html" class="nav-link"><i class="fa-solid fa-dungeon"></i> Raid Info</a>
+          </li>
+          <li class="nav-item"><a href="dkp.html" class="nav-link"><i class="fa-solid fa-coins"></i> DKP Ladder</a></li>
+          <li class="nav-item"><a href="progression.html" class="nav-link active"><i class="fa-solid fa-trophy"></i>
+              Progression</a></li>
+          <li class="nav-item"><a href="roster.html" class="nav-link"><i class="fa-solid fa-users-gear"></i> Roster</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="recruitment.html" class="btn-primary">
+          <i class="fa-solid fa-shield-halved"></i> Apply Now
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header Title Area -->
+  <main class="main-wrapper">
+    <div class="section-header">
+      <span class="section-tag">Raid Tiers &bull; Boss Encounters</span>
+      <h1 class="section-title">Raid Progression</h1>
+    </div>
+
+    <!-- Panel 1: ICC (Main Run) -->
+    <div class="content-panel" style="margin-bottom: 2rem;">
+      <div class="panel-header-flex">
+        <div>
+          <h2 class="panel-title" style="margin-bottom: 0.25rem; border-bottom: none; padding-bottom: 0;">
+            <i class="fa-solid fa-crown"></i> ICC (Main Run)
+          </h2>
+          <span style="color: var(--text-muted); font-size: 0.85rem;">Icecrown Citadel &bull; 12 / 12 Heroic</span>
+        </div>
+        <div>
+          <a href="logs.html" class="btn-primary">
+            <i class="fa-solid fa-chart-line"></i> View Raid Logs
+          </a>
+        </div>
+      </div>
+
+      <!-- ICC Main Bosses List (12 Bosses) -->
+      <div class="boss-grid">
+        <div class="boss-card">
+          <span class="boss-name">1. Lord Marrowgar</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">2. Lady Deathwhisper</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">3. Icecrown Gunship Battle</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">4. Deathbringer Saurfang</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">5. Festergut</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">6. Rotface</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">7. Professor Putricide</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">8. Blood Council</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">9. Blood-Queen Lana'thel</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">10. Valithria Dreamwalker</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">11. Sindragosa</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">12. The Lich King</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 2: ICC (Alt run) -->
+    <div class="content-panel" style="margin-bottom: 2rem;">
+      <div class="panel-header-flex">
+        <div>
+          <h2 class="panel-title" style="margin-bottom: 0.25rem; border-bottom: none; padding-bottom: 0;">
+            <i class="fa-solid fa-shield-halved"></i> ICC (Alt run)
+          </h2>
+          <span style="color: var(--text-muted); font-size: 0.85rem;">Icecrown Citadel &bull; 9 / 12 Heroic</span>
+        </div>
+      </div>
+
+      <!-- ICC Alt Bosses List (12 Bosses) -->
+      <div class="boss-grid">
+        <div class="boss-card">
+          <span class="boss-name">1. Lord Marrowgar</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">2. Lady Deathwhisper</span>
+          <span class="boss-status status-progress"><i class="fa-solid fa-arrows-rotate"></i> Under Progress</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">3. Icecrown Gunship Battle</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">4. Deathbringer Saurfang</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">5. Festergut</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">6. Rotface</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">7. Professor Putricide</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">8. Blood Council</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">9. Blood-Queen Lana'thel</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">10. Valithria Dreamwalker</span>
+          <span class="boss-status status-defeated"><i class="fa-solid fa-check"></i> Defeated</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">11. Sindragosa</span>
+          <span class="boss-status status-progress"><i class="fa-solid fa-arrows-rotate"></i> Under Progress</span>
+        </div>
+        <div class="boss-card">
+          <span class="boss-name">12. The Lich King</span>
+          <span class="boss-status status-progress"><i class="fa-solid fa-arrows-rotate"></i> Under Progress</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 3: RS (Ruby Sanctum) -->
+    <div class="content-panel" style="margin-bottom: 2rem;">
+      <div class="panel-header-flex">
+        <div>
+          <h2 class="panel-title" style="margin-bottom: 0.25rem; border-bottom: none; padding-bottom: 0;">
+            <i class="fa-solid fa-dragon"></i> RS (The Ruby Sanctum)
+          </h2>
+          <span style="color: var(--text-muted); font-size: 0.85rem;">The Ruby Sanctum HC &bull; Under Progress</span>
+        </div>
+      </div>
+
+      <!-- RS Boss List (1 Boss) -->
+      <div class="boss-grid" style="grid-template-columns: 1fr;">
+        <div class="boss-card" style="padding: 1rem 1.25rem; border-color: rgba(255, 145, 0, 0.4);">
+          <span class="boss-name" style="font-size: 1.05rem;">1. Halion</span>
+          <span class="boss-status status-progress"><i class="fa-solid fa-arrows-rotate"></i> Under Progress</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p class="footer-copy">&copy; 2026 Blackwing Guild. GitHub Pages Ready.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>

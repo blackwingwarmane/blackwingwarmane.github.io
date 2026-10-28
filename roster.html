@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roster | Blackwing</title>
+  <meta name="description" content="Meet the raiders, officers, and champions of Blackwing.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐉</text></svg>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="site-header" id="mainHeader">
+    <div class="nav-container">
+      <a href="index.html" class="guild-brand">
+        <div class="guild-crest"><i class="fa-solid fa-dragon"></i></div>
+        <div class="guild-info-title">
+          <span class="guild-name">BLACKWING</span>
+          <span class="guild-realm">Icecrown &bull; Warmane</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item"><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link"><i class="fa-solid fa-scroll"></i> About Us</a></li>
+          <li class="nav-item"><a href="rules.html" class="nav-link"><i class="fa-solid fa-gavel"></i> Rules</a></li>
+          <li class="nav-item"><a href="raids.html" class="nav-link"><i class="fa-solid fa-dungeon"></i> Raid Info</a></li>
+          <li class="nav-item"><a href="dkp.html" class="nav-link"><i class="fa-solid fa-coins"></i> DKP Ladder</a></li>
+          <li class="nav-item"><a href="progression.html" class="nav-link"><i class="fa-solid fa-trophy"></i> Progression</a></li>
+          <li class="nav-item"><a href="roster.html" class="nav-link active"><i class="fa-solid fa-users-gear"></i> Roster</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="recruitment.html" class="btn-primary">
+          <i class="fa-solid fa-shield-halved"></i> Apply Now
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header Title Area -->
+  <main class="main-wrapper">
+    <div class="section-header">
+      <span class="section-tag">Members of Blackwing</span>
+      <h1 class="section-title">Guild Roster</h1>
+    </div>
+
+    <!-- Raiders & Members Panel -->
+    <div class="content-panel">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
+        <div>
+          <h2 class="panel-title" style="margin-bottom: 0.25rem; border-bottom: none; padding-bottom: 0;">
+            <i class="fa-solid fa-users"></i> Guild Member Directory
+          </h2>
+          <span style="color: var(--text-muted); font-size: 0.85rem;">Connected to Realm &bull; Icecrown &bull; Warmane</span>
+        </div>
+      </div>
+      
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem;">
+        Official guild membership list. This section is structured to fetch live character data, levels, and specs directly from the Blizzard Battle.net API or Raider.IO.
+      </p>
+
+      <!-- Member Roster Cards Container (Ready for API loading) -->
+      <div id="guildRosterContainer" style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+        <span class="class-tag class-deathknight" style="padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fa-solid fa-skull"></i> Grimfrost (Death Knight)</span>
+        <span class="class-tag class-paladin" style="padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fa-solid fa-sun"></i> Dawncaller (Paladin)</span>
+        <span class="class-tag class-druid" style="padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fa-solid fa-leaf"></i> Sylvash (Druid)</span>
+        <span class="class-tag class-warlock" style="padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fa-solid fa-fire-flame-curved"></i> Netherbound (Warlock)</span>
+        <span class="class-tag class-hunter" style="padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fa-solid fa-crosshairs"></i> Arrowstrike (Hunter)</span>
+        <span class="class-tag class-rogue" style="padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fa-solid fa-mask"></i> Shadowstep (Rogue)</span>
+        <span class="class-tag class-shaman" style="padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fa-solid fa-bolt"></i> Stormbreaker (Shaman)</span>
+        <span class="class-tag class-monk" style="padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fa-solid fa-hand-fist"></i> Windwalker (Monk)</span>
+        <span class="class-tag class-demonhunter" style="padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fa-solid fa-eye"></i> Felscythe (Demon Hunter)</span>
+        <span class="class-tag class-mage" style="padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fa-solid fa-wand-magic-sparkles"></i> Frostweaver (Mage)</span>
+        <span class="class-tag class-priest" style="padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fa-solid fa-hands-praying"></i> Lightwhisper (Priest)</span>
+        <span class="class-tag class-warrior" style="padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fa-solid fa-shield"></i> Ironwarden (Warrior)</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p class="footer-copy">&copy; 2026 Blackwing Guild. Hosted on GitHub Pages.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

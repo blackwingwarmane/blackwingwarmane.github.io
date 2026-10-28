@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blackwing | World of Warcraft Progressive Guild</title>
+  <meta name="description"
+    content="Official website for Blackwing, a World of Warcraft progressive raiding guild. Raid progression, roster, and recruitment.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐉</text></svg>">
+
+  <!-- FontAwesome 6 for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="site-header" id="mainHeader">
+    <div class="nav-container">
+      <a href="index.html" class="guild-brand" id="brandLink">
+        <div class="guild-crest">
+          <i class="fa-solid fa-dragon"></i>
+        </div>
+        <div class="guild-info-title">
+          <span class="guild-name">BLACKWING</span>
+          <span class="guild-realm">Icecrown &bull; Warmane</span>
+        </div>
+      </a>
+
+      <!-- Desktop & Mobile Navigation Links -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item"><a href="index.html" class="nav-link active" id="navHome"><i
+                class="fa-solid fa-house"></i> Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link" id="navAbout"><i class="fa-solid fa-scroll"></i>
+              About Us</a></li>
+          <li class="nav-item"><a href="rules.html" class="nav-link" id="navRules"><i class="fa-solid fa-gavel"></i>
+              Rules</a></li>
+          <li class="nav-item"><a href="raids.html" class="nav-link" id="navRaids"><i class="fa-solid fa-dungeon"></i>
+              Raid Info</a></li>
+          <li class="nav-item"><a href="dkp.html" class="nav-link" id="navDkp"><i class="fa-solid fa-coins"></i> DKP
+              Ladder</a></li>
+          <li class="nav-item"><a href="progression.html" class="nav-link" id="navProgression"><i
+                class="fa-solid fa-trophy"></i> Progression</a></li>
+          <li class="nav-item"><a href="roster.html" class="nav-link" id="navRoster"><i
+                class="fa-solid fa-users-gear"></i> Roster</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Action & Mobile Toggle -->
+      <div class="nav-actions">
+        <a href="recruitment.html" class="btn-primary" id="btnJoinNav">
+          <i class="fa-solid fa-shield-halved"></i> Apply Now
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section: Header Photo with Text Overlay -->
+  <section class="hero-section" id="heroSection">
+    <div class="hero-background-wrapper">
+      <img src="assets/images/hero-banner.jpg" alt="Blackwing Guild Raid Team" class="hero-photo" id="heroPhoto">
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge" id="heroBadge">
+        <i class="fa-solid fa-fire"></i> Progression Raiding &bull; Chill & Non-Toxic Environment
+      </div>
+      <h1 class="hero-title" id="heroTitle">BLACKWING</h1>
+      <p class="hero-subtitle" id="heroSubtitle">
+        Forged in flame, conquering the darkest depths of Azeroth. A dedicated community of veteran raiders, high
+        Mythic+ runners, and eternal brothers in arms.
+      </p>
+      <div class="hero-cta-group">
+        <a href="recruitment.html" class="btn-primary" id="btnHeroApply">
+          <i class="fa-solid fa-user-plus"></i> Join Our Ranks
+        </a>
+        <a href="progression.html" class="btn-secondary" id="btnHeroProgress">
+          <i class="fa-solid fa-chart-line"></i> View Progression
+        </a>
+        <a href="https://discord.gg" target="_blank" rel="noopener noreferrer" class="btn-secondary"
+          id="btnHeroDiscord">
+          <i class="fa-brands fa-discord"></i> Join Discord
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Body Content -->
+  <main class="main-wrapper" id="mainContent">
+
+    <!-- Quick Stats & Raid Schedule Grid -->
+    <div class="stats-grid" id="statsGrid">
+      <div class="info-card">
+        <div class="info-card-icon"><i class="fa-solid fa-dungeon"></i></div>
+        <h3 class="info-card-title">Raid Schedule</h3>
+        <p class="info-card-text">Weekdays</p>
+        <span class="info-card-value">17:30 Server Time</span>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-icon"><i class="fa-solid fa-crown"></i></div>
+        <h3 class="info-card-title">Current Standing</h3>
+        <p class="info-card-text"> Icecrown Citadel </p>
+        <span class="info-card-value">12/12 Heroic</span>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-icon"><i class="fa-solid fa-gem"></i></div>
+        <h3 class="info-card-title">Loot System</h3>
+        <p class="info-card-text">Transparent &amp; Fair</p>
+        <span class="info-card-value">DKP</span>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-icon"><i class="fa-solid fa-door-open"></i></div>
+        <h3 class="info-card-title">Recruitment</h3>
+        <p class="info-card-text">Exceptional applicants always welcome</p>
+        <span class="info-card-value" style="color: #69f0ae;"></span>
+      </div>
+    </div>
+
+    <!-- Two-Column Overview: Latest Announcements & Recruitment Priorities -->
+    <div class="content-columns">
+
+      <!-- Left Column: Guild Highlights & News -->
+      <section class="content-panel" aria-labelledby="newsHeading">
+        <h2 class="panel-title" id="newsHeading">
+          <i class="fa-solid fa-newspaper"></i> Latest Guild Dispatches
+        </h2>
+
+        <article class="news-item">
+          <div class="news-meta">
+            <span><i class="fa-regular fa-calendar"></i> October 12, 2026</span>
+            <span><i class="fa-solid fa-user-shield"></i> Guild Master</span>
+          </div>
+          <h3 class="news-title">Mythic Rasha'nan Vanquished!</h3>
+          <p class="news-desc">
+            After a phenomenal raid night of clean execution and pinpoint positioning, the beast has fallen! Huge
+            shoutout to the raid team for flawless execution of web mechanics and damage prioritization. Next target:
+            Broodkeeper!
+          </p>
+        </article>
+
+        <article class="news-item">
+          <div class="news-meta">
+            <span><i class="fa-regular fa-calendar"></i> October 05, 2026</span>
+            <span><i class="fa-solid fa-bullhorn"></i> Raid Leader</span>
+          </div>
+          <h3 class="news-title">Season 1 Mythic+ Push Week &amp; Guild Keystones</h3>
+          <p class="news-desc">
+            Guild keystones (+10 and +12) run daily throughout the week! Sign up in Discord's #mplus-grouping channel.
+            All guild members and trials are welcome to earn vault slots.
+          </p>
+        </article>
+      </section>
+
+      <!-- Right Column: Priority Recruitment Needs -->
+      <aside class="content-panel" aria-labelledby="recruitmentHeading">
+        <h2 class="panel-title" id="recruitmentHeading">
+          <i class="fa-solid fa-bullseye"></i> Recruitment Needs
+        </h2>
+
+        <div class="recruitment-list">
+          <!-- High Priority -->
+          <div class="role-category">
+            <div class="role-header">
+              <span><i class="fa-solid fa-circle-up"></i> High Priority</span>
+            </div>
+            <div class="classes-tags">
+              <span class="class-tag class-paladin">Holy Paladin</span>
+              <span class="class-tag class-hunter">Hunter</span>
+              <span class="class-tag class-shaman">Restoration Shaman</span>
+            </div>
+          </div>
+
+          <!-- Moderate Priority -->
+          <div class="role-category">
+            <div class="role-header">
+              <span><i class="fa-solid fa-circle-half-stroke"></i> Moderate Priority</span>
+            </div>
+            <div class="classes-tags">
+              <span class="class-tag class-deathknight">Blood DK</span>
+              <span class="class-tag class-paladin">Protection Paladin</span>
+              <span class="class-tag class-priest">Disc / Holy Priest / Shadow</span>
+              <span class="class-tag class-druid">Boomkin / Feral</span>
+              <span class="class-tag class-rogue">Rogue</span>
+              <span class="class-tag class-warlock">Warlock</span>
+              <span class="class-tag class-mage">Mage</span>
+            </div>
+          </div>
+
+          <!-- Low Priority -->
+          <div class="role-category">
+            <div class="role-header">
+              <span><i class="fa-solid fa-circle-down"></i> Low Priority</span>
+            </div>
+            <div class="classes-tags">
+              <span class="class-tag class-deathknight">Unholy DK</span>
+              <span class="class-tag class-warrior">Fury Warrior</span>
+              <span class="class-tag class-paladin">Retribution Paladin</span>
+
+            </div>
+          </div>
+
+          <div style="margin-top: 1.2rem; text-align: center;">
+            <a href="recruitment.html" class="btn-primary" style="width: 100%; justify-content: center;">
+              Submit Application
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+  </main>
+
+  <!-- Website Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="https://discord.gg" target="_blank" rel="noopener noreferrer" class="footer-link"><i
+            class="fa-brands fa-discord"></i> Discord</a>
+        <a href="https://armory.warmane.com/guild/Blackwing/Icecrown/summary" target="_blank" rel="noopener noreferrer"
+          class="footer-link"><i class="fa-solid fa-book-skull"></i> Armory</a>
+      </div>
+      <p class="footer-copy">
+        &copy; 2026 Blackwing Guild. Hosted free on GitHub Pages.
+      </p>
+      <p class="footer-disclaimer">
+        World of Warcraft, Warcraft and Blizzard Entertainment are trademarks or registered trademarks of Blizzard
+        Entertainment, Inc. in the U.S. and/or other countries.
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>

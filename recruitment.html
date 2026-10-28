@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recruitment | Blackwing</title>
+  <meta name="description" content="Apply to join Blackwing. Information on open roles, raid expectations, and application form.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐉</text></svg>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--gold-light);
+      margin-bottom: 0.4rem;
+      font-family: var(--font-heading);
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border-gold);
+      border-radius: 4px;
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color var(--transition-fast);
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--gold-light);
+      box-shadow: 0 0 10px rgba(229, 185, 79, 0.3);
+    }
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="site-header" id="mainHeader">
+    <div class="nav-container">
+      <a href="index.html" class="guild-brand">
+        <div class="guild-crest"><i class="fa-solid fa-dragon"></i></div>
+        <div class="guild-info-title">
+          <span class="guild-name">BLACKWING</span>
+          <span class="guild-realm">Icecrown &bull; Warmane</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item"><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link"><i class="fa-solid fa-scroll"></i> About Us</a></li>
+          <li class="nav-item"><a href="rules.html" class="nav-link"><i class="fa-solid fa-gavel"></i> Rules</a></li>
+          <li class="nav-item"><a href="raids.html" class="nav-link"><i class="fa-solid fa-dungeon"></i> Raid Info</a></li>
+          <li class="nav-item"><a href="dkp.html" class="nav-link"><i class="fa-solid fa-coins"></i> DKP Ladder</a></li>
+          <li class="nav-item"><a href="progression.html" class="nav-link"><i class="fa-solid fa-trophy"></i> Progression</a></li>
+          <li class="nav-item"><a href="roster.html" class="nav-link"><i class="fa-solid fa-users-gear"></i> Roster</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="recruitment.html" class="btn-primary">
+          <i class="fa-solid fa-shield-halved"></i> Apply Now
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header Title Area -->
+  <main class="main-wrapper">
+    <div class="section-header">
+      <span class="section-tag">Enlist In Blackwing</span>
+      <h1 class="section-title">Guild Application</h1>
+    </div>
+
+    <div class="content-columns">
+      
+      <!-- Application Form Panel -->
+      <section class="content-panel">
+        <h2 class="panel-title"><i class="fa-solid fa-feather-pointed"></i> Raider Application Form</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem;">
+          Please provide accurate character and alt information. An officer will review your application within 24-48 hours.
+        </p>
+
+        <form id="applyForm" onsubmit="event.preventDefault(); alert('Application submitted! (This demo can be connected to your Discord Webhook or Google Form in the next step).');">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="charName">Main Character Name &bull; Realm</label>
+              <input type="text" id="charName" class="form-control" placeholder="e.g. Shadowstep - Tarren Mill" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="charClass">Main Character &bull; Spec</label>
+              <input type="text" id="charClass" class="form-control" placeholder="e.g. Havoc Demon Hunter" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="alt1Name">Alt Character 1 &bull; Name</label>
+              <input type="text" id="alt1Name" class="form-control" placeholder="e.g. Shadowpriest (Optional)">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="alt1Spec">Alt Character 1 &bull; Spec</label>
+              <input type="text" id="alt1Spec" class="form-control" placeholder="e.g. Shadow Priest">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="alt2Name">Alt Character 2 &bull; Name</label>
+              <input type="text" id="alt2Name" class="form-control" placeholder="e.g. Holydruid (Optional)">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="alt2Spec">Alt Character 2 &bull; Spec</label>
+              <input type="text" id="alt2Spec" class="form-control" placeholder="e.g. Restoration Druid">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="discordTag">Discord Username</label>
+            <input type="text" id="discordTag" class="form-control" placeholder="e.g. username#0000 or username" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="experience">Past Raiding Experience &amp; About You</label>
+            <textarea id="experience" rows="4" class="form-control" placeholder="Briefly describe your raiding background and why you want to join Blackwing..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; font-size: 0.95rem; padding: 0.85rem;">
+            <i class="fa-solid fa-paper-plane"></i> Submit Application to Officers
+          </button>
+        </form>
+      </section>
+
+      <!-- Requirements & Expectations Aside -->
+      <aside class="content-panel">
+        <h2 class="panel-title"><i class="fa-solid fa-list-check"></i> What We Expect</h2>
+        <ul style="color: var(--text-secondary); list-style-type: none; display: flex; flex-direction: column; gap: 1rem; font-size: 0.92rem;">
+          <li style="display: flex; gap: 0.6rem;">
+            <i class="fa-solid fa-circle-check" style="color: var(--gold-light); margin-top: 0.2rem;"></i>
+            <span><strong>High Attendance:</strong> 90%+ attendance during progression raid nights.</span>
+          </li>
+          <li style="display: flex; gap: 0.6rem;">
+            <i class="fa-solid fa-circle-check" style="color: var(--gold-light); margin-top: 0.2rem;"></i>
+            <span><strong>Character Optimization:</strong> Best enchants, gems, consumables, and thorough understanding of your class mechanics.</span>
+          </li>
+          <li style="display: flex; gap: 0.6rem;">
+            <i class="fa-solid fa-circle-check" style="color: var(--gold-light); margin-top: 0.2rem;"></i>
+            <span><strong>Experience:</strong> Heroic boss knowledge (at least 8/12 ICC) with a solid understanding of progression mechanics.</span>
+          </li>
+          <li style="display: flex; gap: 0.6rem;">
+            <i class="fa-solid fa-circle-check" style="color: var(--gold-light); margin-top: 0.2rem;"></i>
+            <span><strong>Mature Mindset:</strong> Receptive to constructive feedback, team-first mentality, reliable Discord connection.</span>
+          </li>
+        </ul>
+
+        <div style="margin-top: 2rem; padding: 1rem; background: rgba(0,0,0,0.4); border-left: 3px solid var(--gold-primary); border-radius: 4px;">
+          <p style="font-size: 0.85rem; color: var(--gold-light); font-weight: 600;">
+            <i class="fa-brands fa-discord"></i> Prefer to chat directly?
+          </p>
+          <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.3rem;">
+            You can also reach out directly to an officer on Discord or join our community server anytime!
+          </p>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p class="footer-copy">&copy; 2026 Blackwing Guild. GitHub Pages Ready.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

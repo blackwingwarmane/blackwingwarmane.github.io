@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guild Rules & Standings | Blackwing</title>
+  <meta name="description"
+    content="Official guild policies, rank hierarchy, and DKP system rules for Blackwing.">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐉</text></svg>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Rules Table Styles */
+    .rules-table-container {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--border-gold);
+      border-radius: 6px;
+      background: rgba(13, 16, 23, 0.65);
+      margin-bottom: 1.25rem;
+    }
+    .rules-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+    .rules-table th {
+      background: rgba(22, 27, 34, 0.9);
+      color: var(--gold-light);
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      letter-spacing: 0.75px;
+      text-transform: uppercase;
+      padding: 0.85rem 1.1rem;
+      border-bottom: 1px solid var(--border-gold);
+      white-space: nowrap;
+    }
+    .rules-table td {
+      padding: 0.8rem 1.1rem;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+      color: var(--text-secondary);
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    .rules-table tbody tr:hover td {
+      background: rgba(229, 185, 79, 0.05);
+      color: var(--text-primary);
+    }
+    .rules-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .code-pill {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      color: var(--gold-light);
+      padding: 0.15rem 0.45rem;
+      border-radius: 3px;
+      font-family: monospace;
+      font-size: 0.88rem;
+    }
+    .bonus-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: rgba(0, 230, 118, 0.12);
+      border: 1px solid rgba(0, 230, 118, 0.35);
+      color: #00e676;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .penalty-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: rgba(239, 83, 80, 0.12);
+      border: 1px solid rgba(239, 83, 80, 0.35);
+      color: #ef5350;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .rule-card {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      border-radius: 6px;
+      padding: 1.3rem;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .rule-card:hover {
+      border-color: rgba(212, 175, 55, 0.45);
+      background: rgba(18, 18, 18, 0.65);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    }
+    .rule-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.22rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 0.8rem;
+      width: fit-content;
+    }
+    .rule-badge-danger {
+      background: rgba(239, 83, 80, 0.14);
+      border: 1px solid rgba(239, 83, 80, 0.38);
+      color: #ff5252;
+    }
+    .rule-badge-warning {
+      background: rgba(255, 179, 0, 0.14);
+      border: 1px solid rgba(255, 179, 0, 0.38);
+      color: #ffb300;
+    }
+    .rule-badge-info {
+      background: rgba(33, 150, 243, 0.14);
+      border: 1px solid rgba(33, 150, 243, 0.38);
+      color: #64b5f6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="site-header" id="mainHeader">
+    <div class="nav-container">
+      <a href="index.html" class="guild-brand">
+        <div class="guild-crest"><i class="fa-solid fa-dragon"></i></div>
+        <div class="guild-info-title">
+          <span class="guild-name">BLACKWING</span>
+          <span class="guild-realm">Icecrown &bull; Warmane</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item"><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link"><i class="fa-solid fa-scroll"></i> About Us</a>
+          </li>
+          <li class="nav-item"><a href="rules.html" class="nav-link active"><i class="fa-solid fa-gavel"></i> Rules</a>
+          </li>
+          <li class="nav-item"><a href="raids.html" class="nav-link"><i class="fa-solid fa-dungeon"></i> Raid Info</a>
+          </li>
+          <li class="nav-item"><a href="dkp.html" class="nav-link"><i class="fa-solid fa-coins"></i> DKP Ladder</a></li>
+          <li class="nav-item"><a href="progression.html" class="nav-link"><i class="fa-solid fa-trophy"></i>
+              Progression</a></li>
+          <li class="nav-item"><a href="roster.html" class="nav-link"><i class="fa-solid fa-users-gear"></i> Roster</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="recruitment.html" class="btn-primary">
+          <i class="fa-solid fa-shield-halved"></i> Apply Now
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="main-wrapper">
+    <div class="section-header">
+      <span class="section-tag">Guild Policies &amp; Operating Standards</span>
+      <h1 class="section-title">Guild Guidelines &amp; Rules</h1>
+    </div>
+
+    <!-- BLOCK 1: SERVER & GUILD RULES -->
+    <section class="content-panel" style="margin-bottom: 2.2rem;">
+      <h2 class="panel-title"><i class="fa-solid fa-scale-balanced"></i> 1. Server &amp; Guild Rules</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.98rem; line-height: 1.7;">
+        Hello! Here are the forbidden things and foundational rules on the <strong>&lt;Blackwing&gt;</strong> server that we expect all members to follow to keep this quiet, peaceful corner enjoyable for everyone. Welcome to <strong>&lt;Blackwing&gt;</strong>!
+      </p>
+
+      <div class="accordion-wrapper" style="margin-bottom: 1rem;">
+        
+        <!-- Politics -->
+        <div class="accordion-item active">
+          <div style="padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span style="background: rgba(239, 83, 80, 0.15); border: 1px solid rgba(239, 83, 80, 0.35); color: #ff5252; padding: 0.25rem 0.65rem; border-radius: 4px; font-size: 0.82rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.4rem;"><i class="fa-solid fa-landmark-dome"></i> Politics</span>
+              <strong style="color: var(--gold-light); font-family: var(--font-heading); font-size: 1.05rem;">NO Politics</strong>
+            </div>
+            <span style="color: #ff5252; font-size: 0.85rem; font-weight: 600;"><i class="fa-solid fa-ban"></i> Strictly Forbidden</span>
+          </div>
+          <div style="padding: 1rem 1.4rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+            Political discussions, debates, propaganda, or divisive arguments of any kind are strictly forbidden in guild chat, Discord channels, and voice comms. Keep our corner peaceful, neutral, and focused on the game.
+          </div>
+        </div>
+
+        <!-- Racism -->
+        <div class="accordion-item active">
+          <div style="padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span style="background: rgba(239, 83, 80, 0.15); border: 1px solid rgba(239, 83, 80, 0.35); color: #ff5252; padding: 0.25rem 0.65rem; border-radius: 4px; font-size: 0.82rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.4rem;"><i class="fa-solid fa-hand-fist"></i> Racism</span>
+              <strong style="color: var(--gold-light); font-family: var(--font-heading); font-size: 1.05rem;">NO Racism in Any Shape or Form</strong>
+            </div>
+            <span style="color: #ff5252; font-size: 0.85rem; font-weight: 600;"><i class="fa-solid fa-shield-xmark"></i> Zero Tolerance</span>
+          </div>
+          <div style="padding: 1rem 1.4rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+            Zero tolerance for racism, racial slurs, discriminatory language, or prejudice in any shape or form. Any violation will result in an immediate strike, disciplinary action, or permanent guild removal without warning.
+          </div>
+        </div>
+
+        <!-- Bashing & Harassment -->
+        <div class="accordion-item active">
+          <div style="padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span style="background: rgba(239, 83, 80, 0.15); border: 1px solid rgba(239, 83, 80, 0.35); color: #ff5252; padding: 0.25rem 0.65rem; border-radius: 4px; font-size: 0.82rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.4rem;"><i class="fa-solid fa-user-slash"></i> Conduct</span>
+              <strong style="color: var(--gold-light); font-family: var(--font-heading); font-size: 1.05rem;">Bashing or Harassment of Members</strong>
+            </div>
+            <span style="color: #ff5252; font-size: 0.85rem; font-weight: 600;"><i class="fa-solid fa-heart-crack"></i> Zero Tolerance</span>
+          </div>
+          <div style="padding: 1rem 1.4rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+            Bashing, bullying, harassment, personal attacks, or toxic call-outs targeting other members of the &lt;Blackwing&gt; community are strictly forbidden. Treat every teammate with common courtesy and respect.
+          </div>
+        </div>
+
+        <!-- Know your class -->
+        <div class="accordion-item active">
+          <div style="padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span style="background: rgba(255, 179, 0, 0.15); border: 1px solid rgba(255, 179, 0, 0.35); color: #ffb300; padding: 0.25rem 0.65rem; border-radius: 4px; font-size: 0.82rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.4rem;"><i class="fa-solid fa-book-skull"></i> Raiding</span>
+              <strong style="color: var(--gold-light); font-family: var(--font-heading); font-size: 1.05rem;">Know Your Class !!!</strong>
+            </div>
+            <span style="color: var(--gold-primary); font-size: 0.85rem; font-weight: 600;"><i class="fa-solid fa-fire"></i> Raid Standard</span>
+          </div>
+          <div style="padding: 1rem 1.4rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+            Understand your class specialization, optimal talent builds, rotations, stat priorities, and boss tactic mechanics inside out. Come prepared with full gems, top-tier enchants, and consumables. Continual self-improvement and dedication to your role are expected from every raider.
+          </div>
+        </div>
+
+        <!-- Full Duration -->
+        <div class="accordion-item active">
+          <div style="padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span style="background: rgba(33, 150, 243, 0.15); border: 1px solid rgba(33, 150, 243, 0.35); color: #64b5f6; padding: 0.25rem 0.65rem; border-radius: 4px; font-size: 0.82rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.4rem;"><i class="fa-solid fa-clock"></i> Commitment</span>
+              <strong style="color: var(--gold-light); font-family: var(--font-heading); font-size: 1.05rem;">Full Raid Duration &amp; Good Manners</strong>
+            </div>
+            <span style="color: #64b5f6; font-size: 0.85rem; font-weight: 600;"><i class="fa-solid fa-handshake"></i> Expected Conduct</span>
+          </div>
+          <div style="padding: 1rem 1.4rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+            You are expected to be here for the full duration of the raid. Leaving without telling anyone is not tolerated. If you can't play or need to step out, let us know in advance&mdash;have good manners!
+          </div>
+        </div>
+
+        <!-- Boost -->
+        <div class="accordion-item active">
+          <div style="padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span style="background: rgba(0, 230, 118, 0.15); border: 1px solid rgba(0, 230, 118, 0.35); color: #00e676; padding: 0.25rem 0.65rem; border-radius: 4px; font-size: 0.82rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.4rem;"><i class="fa-solid fa-handshake-angle"></i> Teamwork</span>
+              <strong style="color: var(--gold-light); font-family: var(--font-heading); font-size: 1.05rem;">Don't Expect Anyone to Boost You</strong>
+            </div>
+            <span style="color: #00e676; font-size: 0.85rem; font-weight: 600;"><i class="fa-solid fa-heart"></i> Reciprocal Kindness</span>
+          </div>
+          <div style="padding: 1rem 1.4rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+            Don't expect anyone to boost you. Favors will be returned, it depends on you! A little kindness goes a long way.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BLOCK 2: RANK RULES -->
+    <section class="content-panel" style="margin-bottom: 2.2rem;">
+      <h2 class="panel-title"><i class="fa-solid fa-sitemap"></i> 2. Rank Hierarchy &amp; Advancement Rules</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.98rem; line-height: 1.7;">
+        Ranks define raid spot priority, access to exclusive guild guides, shard gathering privileges, and administrative responsibilities.
+        Promotions are reviewed every <strong>2 weeks</strong>, and demotions are reviewed <strong>monthly</strong> by the Officer Council.
+      </p>
+
+      <!-- 2.1 Guild Ranks & Privileges -->
+      <h3 style="color: var(--gold-light); font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fa-solid fa-layer-group" style="color: var(--gold-primary);"></i> Guild Ranks &amp; Raid Privileges
+      </h3>
+
+      <div class="accordion-wrapper" style="margin-bottom: 2rem;">
+        <!-- Guild Master -->
+        <div class="accordion-item active">
+          <div style="padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span class="dkp-rank-badge badge-gm">Guild Master</span>
+              <strong style="color: var(--gold-light); font-family: var(--font-heading);">Supreme Leadership</strong>
+            </div>
+            <span style="color: #ff5252; font-size: 0.85rem; font-weight: 600;"><i class="fa-solid fa-key"></i> Basically Everything</span>
+          </div>
+          <div style="padding: 1rem 1.4rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+            Supreme authority over guild administration, roster governance, and community diplomacy. Final decision maker on all guild rules, disputes, and member removals.
+          </div>
+        </div>
+
+        <!-- Officer -->
+        <div class="accordion-item active">
+          <div style="padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span class="dkp-rank-badge badge-officer">Officer</span>
+              <strong style="color: var(--gold-light); font-family: var(--font-heading);">Raid Leads &amp; Council</strong>
+            </div>
+            <span style="color: #ff4081; font-size: 0.85rem; font-weight: 600;"><i class="fa-solid fa-shield-halved"></i> Full Access</span>
+          </div>
+          <div style="padding: 1rem 1.4rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+            Leads encounters, hosts raids, manages guild bank reserves, processes recruitment applications, maintains DKP records, and oversees discord channels.
+          </div>
+        </div>
+
+        <!-- Core Raider -->
+        <div class="accordion-item active">
+          <div style="padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span class="dkp-rank-badge badge-core">Core Raider</span>
+              <strong style="color: var(--gold-light); font-family: var(--font-heading);">Elite Progression Member</strong>
+            </div>
+            <span style="color: #00e676; font-size: 0.85rem; font-weight: 700;"><i class="fa-solid fa-angles-up"></i> High Pick Priority</span>
+          </div>
+          <div style="padding: 1rem 1.4rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7;">
+            <ul style="margin: 0; padding-left: 1.2rem; list-style-type: disc;">
+              <li><strong>High Pick Priority</strong> for all 25-man Heroic raids</li>
+              <li><strong>Eligible to collect Shadowmourne shards</strong></li>
+              <li>Full access to <strong>Raiding Guides</strong></li>
+              <li>Full access to <strong>Class Guides</strong> and <strong>Advanced Class Guides</strong></li>
+              <li>Dedicated <strong>Mentor &amp; Specialist guidance</strong> for parsing and encounter optimization</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Raider -->
+        <div class="accordion-item active">
+          <div style="padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span class="dkp-rank-badge badge-raider">Raider</span>
+              <strong style="color: var(--gold-light); font-family: var(--font-heading);">Active Raider</strong>
+            </div>
+            <span style="color: #64b5f6; font-size: 0.85rem; font-weight: 600;"><i class="fa-solid fa-angle-up"></i> Medium Pick Priority</span>
+          </div>
+          <div style="padding: 1rem 1.4rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7;">
+            <ul style="margin: 0; padding-left: 1.2rem; list-style-type: disc;">
+              <li><strong>Medium Pick Priority</strong> for raid rosters</li>
+              <li><strong>Eligible to collect Shadowmourne shards</strong></li>
+              <li>Full access to <strong>Raiding Guides</strong></li>
+              <li>Full access to <strong>Class Guides</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Member -->
+        <div class="accordion-item active">
+          <div style="padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span class="dkp-rank-badge badge-member">Member</span>
+              <strong style="color: var(--gold-light); font-family: var(--font-heading);">Guild Raider</strong>
+            </div>
+            <span style="color: #bf7fff; font-size: 0.85rem; font-weight: 600;"><i class="fa-solid fa-minus"></i> Average Pick Priority</span>
+          </div>
+          <div style="padding: 1rem 1.4rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7;">
+            <ul style="margin: 0; padding-left: 1.2rem; list-style-type: disc;">
+              <li><strong>Average Pick Priority</strong> for regular raids</li>
+              <li>Full access to <strong>Raiding Guides</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Trial -->
+        <div class="accordion-item active">
+          <div style="padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span class="dkp-rank-badge badge-trial">Trial</span>
+              <strong style="color: var(--gold-light); font-family: var(--font-heading);">Trialist &amp; Evaluation</strong>
+            </div>
+            <span style="color: #fff176; font-size: 0.85rem; font-weight: 600;"><i class="fa-solid fa-angle-down"></i> Low Pick Priority</span>
+          </div>
+          <div style="padding: 1rem 1.4rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+            Evaluation status for new applicants and inactive returning raiders. Assessed on raid attendance, mechanics, log parses, and attitude. Holds low pick priority until promoted.
+          </div>
+        </div>
+
+        <!-- Pug -->
+        <div class="accordion-item active">
+          <div style="padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span class="dkp-rank-badge badge-pug">Pugs</span>
+              <strong style="color: var(--gold-light); font-family: var(--font-heading);">External Raiders</strong>
+            </div>
+            <span style="color: #9e9e9e; font-size: 0.85rem; font-weight: 600;"><i class="fa-solid fa-angles-down"></i> 0.1% Pick Priority</span>
+          </div>
+          <div style="padding: 1rem 1.4rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6;">
+            Non-guild fillers brought in when internal roster availability is depleted. Lowest invite priority (0.1%).
+          </div>
+        </div>
+
+        <!-- Mentor / Specialist Note -->
+        <div style="padding: 1rem 1.4rem; background: rgba(220, 190, 0, 0.08); border: 1px solid rgba(220, 190, 0, 0.3); border-radius: 4px; margin-top: 0.75rem; font-size: 0.88rem; color: var(--text-secondary);">
+          <strong style="color: #f5d020;"><i class="fa-solid fa-star"></i> Specialist &amp; Mentor Role:</strong>
+          Special rank assigned to elite veteran players with deep mechanical mastery to assist, coach, and guide Core Raiders and the guild community.
+        </div>
+      </div>
+
+      <!-- 2.2 Promotions & Advancement Path -->
+      <h3 style="color: var(--gold-light); font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fa-solid fa-stairs" style="color: #00e676;"></i> Rank Promotions &amp; Requirements
+      </h3>
+      <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 1.25rem;">
+        Advancement through the guild ranks is objective and merit-based. Meet the following tenure, raid count, and character GearScore criteria to qualify:
+      </p>
+
+      <div class="accordion-wrapper" style="margin-bottom: 2rem;">
+        <!-- Step 1: Trial -> Member -->
+        <div class="accordion-item active">
+          <div style="padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+            <div style="display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
+              <span class="dkp-rank-badge badge-trial">Trial</span>
+              <i class="fa-solid fa-arrow-right" style="color: #bf7fff; font-size: 0.85rem;"></i>
+              <span class="dkp-rank-badge badge-member">Member</span>
+              <strong style="color: var(--gold-light); font-family: var(--font-heading); margin-left: 0.25rem;">Trial to Member</strong>
+            </div>
+            <span style="color: #bf7fff; font-size: 0.85rem; font-weight: 600;"><i class="fa-solid fa-check"></i> 1+ Month &bull; 15+ 25-Man Raids</span>
+          </div>
+          <div style="padding: 1rem 1.4rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7;">
+            <ul style="margin: 0; padding-left: 1.2rem; list-style-type: disc;">
+              <li><strong>Guild Tenure:</strong> 1 month or more in the guild</li>
+              <li><strong>Active Raiding:</strong> 2 weeks or more of active raiding with a minimum of <strong>15+ 25-man raids</strong></li>
+              <li><strong>Roster Requirement:</strong> <strong>3+ characters</strong> with <strong>5.8k+ GS</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Step 2: Member -> Raider -->
+        <div class="accordion-item active">
+          <div style="padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+            <div style="display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
+              <span class="dkp-rank-badge badge-member">Member</span>
+              <i class="fa-solid fa-arrow-right" style="color: #64b5f6; font-size: 0.85rem;"></i>
+              <span class="dkp-rank-badge badge-raider">Raider</span>
+              <strong style="color: var(--gold-light); font-family: var(--font-heading); margin-left: 0.25rem;">Member to Raider</strong>
+            </div>
+            <span style="color: #64b5f6; font-size: 0.85rem; font-weight: 600;"><i class="fa-solid fa-check"></i> 2+ Months &bull; 25+ 25-Man Raids</span>
+          </div>
+          <div style="padding: 1rem 1.4rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7;">
+            <ul style="margin: 0; padding-left: 1.2rem; list-style-type: disc;">
+              <li><strong>Player Profile:</strong> Overall good, dependable, mechanically sound raider</li>
+              <li><strong>Guild Tenure:</strong> 2 months or more in the guild</li>
+              <li><strong>Active Raiding:</strong> 4 weeks or more of active raiding with a minimum of <strong>25+ 25-man raids</strong></li>
+              <li><strong>Roster Requirement:</strong> <strong>5+ characters</strong> (at least <strong>2</strong> of them with <strong>6.0k+ GS</strong>)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Step 3: Raider -> Core Raider -->
+        <div class="accordion-item active">
+          <div style="padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+            <div style="display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
+              <span class="dkp-rank-badge badge-raider">Raider</span>
+              <i class="fa-solid fa-arrow-right" style="color: #00e676; font-size: 0.85rem;"></i>
+              <span class="dkp-rank-badge badge-core">Core Raider</span>
+              <strong style="color: var(--gold-light); font-family: var(--font-heading); margin-left: 0.25rem;">Raider to Core Raider</strong>
+            </div>
+            <span style="color: #00e676; font-size: 0.85rem; font-weight: 700;"><i class="fa-solid fa-check"></i> 3+ Months &bull; 45+ 25-Man Raids</span>
+          </div>
+          <div style="padding: 1rem 1.4rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7;">
+            <ul style="margin: 0; padding-left: 1.2rem; list-style-type: disc;">
+              <li><strong>Player Profile:</strong> Exceptional player with top-tier mechanics, consistency, and preparation</li>
+              <li><strong>Guild Tenure:</strong> 3 months or more in the guild</li>
+              <li><strong>Active Raiding:</strong> 8 weeks or more of active raiding with a minimum of <strong>45+ 25-man raids</strong></li>
+              <li><strong>Roster Requirement:</strong> <strong>7+ characters</strong> (at least <strong>4</strong> of them with <strong>6.0k+ GS</strong> and min. <strong>1 BiS toon</strong>)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Step 4: Core Raider -> Officer -->
+        <div class="accordion-item active">
+          <div style="padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+            <div style="display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
+              <span class="dkp-rank-badge badge-core">Core Raider</span>
+              <i class="fa-solid fa-arrow-right" style="color: #e8305a; font-size: 0.85rem;"></i>
+              <span class="dkp-rank-badge badge-officer">Officer</span>
+              <strong style="color: var(--gold-light); font-family: var(--font-heading); margin-left: 0.25rem;">Core Raider to Officer</strong>
+            </div>
+            <span style="color: #e8305a; font-size: 0.85rem; font-weight: 600;"><i class="fa-solid fa-shield-halved"></i> 3+ Months &bull; Guild Leadership</span>
+          </div>
+          <div style="padding: 1rem 1.4rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7;">
+            <ul style="margin: 0; padding-left: 1.2rem; list-style-type: disc;">
+              <li><strong>Player Profile:</strong> Elite player: friendly, knowledgeable, well-behaved, and trustworthy</li>
+              <li><strong>Guild Management:</strong> Able to manage guild operations (Discord, Bank, DKP/Loot, Raid hosting &amp; leading)</li>
+              <li><strong>Guild Tenure:</strong> 3 months or more in the guild</li>
+              <li><strong>Roster Requirement:</strong> <strong>9+ characters</strong> (at least <strong>5</strong> of them with <strong>6.0k+ GS</strong> and min. <strong>3 BiS toons</strong>)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.3 Review Cycles, Demotions & Policy -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+        <!-- Review Schedule -->
+        <div style="background: rgba(13, 16, 23, 0.7); border: 1px solid var(--border-gold); padding: 1.25rem; border-radius: 6px;">
+          <h4 style="color: var(--gold-light); font-family: var(--font-heading); font-size: 1rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-regular fa-calendar-check" style="color: var(--gold-primary);"></i> Review Schedule
+          </h4>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.5rem;">
+            The Officer Council systematically reviews the guild roster on scheduled intervals:
+          </p>
+          <ul style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.8; padding-left: 1.2rem; margin: 0;">
+            <li><strong style="color: #00e676;">Promotions Discussion:</strong> Evaluated <strong>every 2 weeks</strong>.</li>
+            <li><strong style="color: #ffab40;">Demotions Discussion:</strong> Evaluated <strong>every 1 month</strong>.</li>
+          </ul>
+        </div>
+
+        <!-- Demotions & Inactivity -->
+        <div style="background: rgba(13, 16, 23, 0.7); border: 1px solid rgba(255, 171, 64, 0.35); padding: 1.25rem; border-radius: 6px;">
+          <h4 style="color: #ffab40; font-family: var(--font-heading); font-size: 1rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-arrow-down-wide-short"></i> Demotion Rules
+          </h4>
+          <ul style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.7; padding-left: 1.2rem; margin: 0;">
+            <li><strong>Inactivity:</strong> Inactive raiders are demoted <strong>1 rank every month</strong>.</li>
+            <li><strong>Discord Policy:</strong> Inactive members are <strong>not kicked from Discord</strong>; their Discord rank is set to <span class="dkp-rank-badge badge-trial" style="font-size: 0.7rem; padding: 0.1rem 0.4rem;">Trial</span>.</li>
+            <li><strong>Performance:</strong> Consistently underperforming raiders will also be subject to rank demotion.</li>
+          </ul>
+        </div>
+
+        <!-- Guild Kicks & Discord Bans -->
+        <div style="background: rgba(13, 16, 23, 0.7); border: 1px solid rgba(239, 83, 80, 0.35); padding: 1.25rem; border-radius: 6px;">
+          <h4 style="color: #ef5350; font-family: var(--font-heading); font-size: 1rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-gavel"></i> Guild Kicks &amp; Discord Bans
+          </h4>
+          <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; margin: 0;">
+            Players who fail to follow guild rules, exhibit toxic behavior, or disrupt the guild environment are subject to guild kick and Discord ban.
+            All situations may be discussed within the Officer Council, but the <strong>final decision always rests with the <span style="color: var(--gold-light); font-weight: 700;">Guild Master</span></strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCK 3: DKP RULES -->
+    <section class="content-panel" style="margin-bottom: 2rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
+        <div>
+          <h2 class="panel-title" style="margin-bottom: 0.25rem; border-bottom: none; padding-bottom: 0;">
+            <i class="fa-solid fa-coins"></i> 3. Guild DKP &amp; Loot Rules
+          </h2>
+          <span style="color: var(--text-muted); font-size: 0.85rem;">Official Guidelines for 25-Man ICC &amp; Ruby Sanctum Raids</span>
+        </div>
+        <a href="dkp.html" class="btn-primary">
+          <i class="fa-solid fa-table-list"></i> Open DKP Ladder Table
+        </a>
+      </div>
+
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.98rem; line-height: 1.7;">
+        Blackwing operates a transparent, account-wide DKP bidding economy across all 25-man Heroic raids and high-value trinkets.
+        Read the official guidelines below regarding bidding mechanics, boss point yields, penalties, and the 10,000 DKP cap.
+      </p>
+
+      <!-- 3.1 Core Rules & Updates -->
+      <h3 style="color: var(--gold-light); font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fa-solid fa-shield-halved" style="color: var(--gold-primary);"></i> 3.1 Core Rules &amp; Updates
+      </h3>
+
+      <div class="accordion-wrapper" style="margin-bottom: 2rem;">
+        <!-- Account-Wide DKP -->
+        <div class="accordion-item active">
+          <div style="padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span class="bonus-tag"><i class="fa-solid fa-users"></i> Account-Wide</span>
+              <strong style="color: var(--gold-light); font-family: var(--font-heading);">Shared DKP Pool Across All Characters</strong>
+            </div>
+            <span style="color: var(--gold-light); font-size: 0.85rem;"><code class="code-pill">?main &lt;MainName&gt;</code></span>
+          </div>
+          <div style="padding: 1rem 1.4rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7;">
+            All mains and alts share a single unified DKP pool. Inform a Raid Leader before raiding on an alt for the first time.
+            Link your alt to your main anytime in Discord using the command: <code class="code-pill">?main &lt;MainCharacterName&gt;</code>.
+          </div>
+        </div>
+
+        <!-- Checking DKP & Bonuses -->
+        <div class="accordion-item active">
+          <div style="padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span class="bonus-tag"><i class="fa-solid fa-gift"></i> Bonuses</span>
+              <strong style="color: var(--gold-light); font-family: var(--font-heading);">Checking Balance &amp; Starter Grants</strong>
+            </div>
+            <span style="color: #00e676; font-size: 0.85rem; font-weight: 700;">+50 DKP Starter &bull; +50 DKP Tank/Healer</span>
+          </div>
+          <div style="padding: 1rem 1.4rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7;">
+            <ul style="margin: 0; padding-left: 1.2rem; list-style-type: disc;">
+              <li><strong>Checking DKP:</strong> Check your current balance anytime via your in-game <strong>Officer Note</strong> or on Discord by typing <code class="code-pill">?dkp</code>.</li>
+              <li><strong>Welcome Bonus:</strong> New raiders receive an automatic starter grant of <strong style="color: #00e676;">+50 DKP</strong> upon joining.</li>
+              <li><strong>Role Bonus:</strong> Dedicated <strong>Tanks and Healers</strong> receive an extra <strong style="color: #00e676;">+50 DKP</strong> role bonus.</li>
+              <li><strong>Main Spec Changes:</strong> Any permanent or temporary Main Spec adjustments must be declared in the designated Discord channel <em>before</em> the raid starts.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3.2 Loot Distribution & Minimum Bids -->
+      <h3 style="color: var(--gold-light); font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fa-solid fa-gavel" style="color: #64b5f6;"></i> 3.2 Loot Distribution &amp; Minimum DKP Bids
+      </h3>
+      <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 1.25rem;">
+        All <strong>Heroic loot</strong>, <strong>Heroic Marks</strong>, and <strong>ICC Normal Trinkets (PP / Sindragosa)</strong> are distributed exclusively via DKP bidding.
+        Non-trinket Normal mode items are distributed via standard <code class="code-pill">/roll</code>.
+      </p>
+
+      <div class="rules-table-container">
+        <table class="rules-table">
+          <thead>
+            <tr>
+              <th>Item Category &amp; Source</th>
+              <th>Encounter / Difficulty</th>
+              <th style="text-align: center; color: var(--gold-light);">Main Spec (MS) Minimum</th>
+              <th style="text-align: center; color: #64b5f6;">Off Spec (OS) Minimum</th>
+              <th style="text-align: right;">Distribution Method</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong style="color: #ff5252;">ICC Normal Trinkets</strong> (PP / Sindragosa)</td>
+              <td>Icecrown Citadel 25 Normal</td>
+              <td style="text-align: center; font-weight: 700; color: var(--gold-light);">250 DKP</td>
+              <td style="text-align: center; color: #64b5f6;">100 DKP</td>
+              <td style="text-align: right;"><span class="bonus-tag" style="background: rgba(229,185,79,0.15); border-color: var(--gold-primary); color: var(--gold-light);">DKP Bidding</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color: #ff5252;">ICC Heroic Trinkets</strong></td>
+              <td>Icecrown Citadel 25 Heroic</td>
+              <td style="text-align: center; font-weight: 700; color: var(--gold-light);">500 DKP</td>
+              <td style="text-align: center; color: #64b5f6;">150 DKP</td>
+              <td style="text-align: right;"><span class="bonus-tag" style="background: rgba(229,185,79,0.15); border-color: var(--gold-primary); color: var(--gold-light);">DKP Bidding</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color: #ff7043;">RS Normal Trinket</strong></td>
+              <td>Ruby Sanctum 25 Normal</td>
+              <td style="text-align: center; font-weight: 700; color: var(--gold-light);">250 DKP</td>
+              <td style="text-align: center; color: #64b5f6;">100 DKP</td>
+              <td style="text-align: right;"><span class="bonus-tag" style="background: rgba(229,185,79,0.15); border-color: var(--gold-primary); color: var(--gold-light);">DKP Bidding</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color: #ff7043;">RS Heroic Trinket</strong></td>
+              <td>Ruby Sanctum 25 Heroic</td>
+              <td style="text-align: center; font-weight: 700; color: var(--gold-light);">700 DKP</td>
+              <td style="text-align: center; color: #64b5f6;">300 DKP</td>
+              <td style="text-align: right;"><span class="bonus-tag" style="background: rgba(229,185,79,0.15); border-color: var(--gold-primary); color: var(--gold-light);">DKP Bidding</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color: #ffd700;">LK Heroic Weapon</strong></td>
+              <td>The Lich King 25 Heroic</td>
+              <td style="text-align: center; font-weight: 700; color: var(--gold-light);">700 DKP</td>
+              <td style="text-align: center; color: #64b5f6;">200 DKP</td>
+              <td style="text-align: right;"><span class="bonus-tag" style="background: rgba(229,185,79,0.15); border-color: var(--gold-primary); color: var(--gold-light);">DKP Bidding</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color: #ba68c8;">Heroic Marks</strong> (Conq / Prot / Vanq)</td>
+              <td>ICC 25 Heroic Bosses</td>
+              <td style="text-align: center; font-weight: 700; color: var(--gold-light);">500 DKP</td>
+              <td style="text-align: center; color: #64b5f6;">50 DKP</td>
+              <td style="text-align: right;"><span class="bonus-tag" style="background: rgba(229,185,79,0.15); border-color: var(--gold-primary); color: var(--gold-light);">DKP Bidding</span></td>
+            </tr>
+            <tr>
+              <td><strong>All Other Heroic Gear</strong></td>
+              <td>ICC 25 HC &bull; RS 25 HC</td>
+              <td style="text-align: center; font-weight: 700; color: var(--gold-light);">Standard Min</td>
+              <td style="text-align: center; color: #64b5f6;">Standard Min</td>
+              <td style="text-align: right;"><span class="bonus-tag" style="background: rgba(229,185,79,0.15); border-color: var(--gold-primary); color: var(--gold-light);">DKP Bidding</span></td>
+            </tr>
+            <tr>
+              <td><strong>Normal Mode Items</strong> (Non-Trinket)</td>
+              <td>ICC 25 NM &bull; RS 25 NM</td>
+              <td style="text-align: center; color: var(--text-muted);">—</td>
+              <td style="text-align: center; color: var(--text-muted);">—</td>
+              <td style="text-align: right;"><span class="bonus-tag" style="background: rgba(100,181,246,0.12); border-color: rgba(100,181,246,0.35); color: #90caf9;">Standard /roll</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 3.3 Bidding Rules, Increments & Commands -->
+      <h3 style="color: var(--gold-light); font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fa-solid fa-stopwatch" style="color: #ffab40;"></i> 3.3 Bidding Rules &amp; Commands
+      </h3>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 1.5rem;">
+        <!-- Auction Mechanics -->
+        <div style="background: rgba(13, 16, 23, 0.7); border: 1px solid var(--border-gold); padding: 1.25rem; border-radius: 6px;">
+          <h4 style="color: var(--gold-light); font-family: var(--font-heading); font-size: 1rem; margin-bottom: 0.75rem;">
+            <i class="fa-solid fa-hourglass-half" style="color: var(--gold-primary);"></i> Auction Mechanics &amp; Ties
+          </h4>
+          <ul style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.7; padding-left: 1.2rem; margin: 0;">
+            <li><strong>Auction Timer:</strong> A 10-second countdown begins once bidding slows down. Any valid higher bid resets the timer.</li>
+            <li><strong>Ties:</strong> The <em>first submitted bid</em> holds priority. Matching an existing highest bid will not overtake the lead.</li>
+            <li><strong>Bid Commands:</strong>
+              <div style="margin-top: 0.35rem;">
+                <code class="code-pill">X</code> — Bids a specific number (e.g. <code class="code-pill">150</code>).<br>
+                <code class="code-pill">all</code> / <code class="code-pill">max</code> / <code class="code-pill">all in</code> — Bids your entire DKP pool. Bypasses standard increments, but must exceed the current high bid by at least <strong style="color: #00e676;">+5 DKP</strong>.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Minimum Bid Increments -->
+        <div style="background: rgba(13, 16, 23, 0.7); border: 1px solid var(--border-gold); padding: 1.25rem; border-radius: 6px;">
+          <h4 style="color: var(--gold-light); font-family: var(--font-heading); font-size: 1rem; margin-bottom: 0.75rem;">
+            <i class="fa-solid fa-arrow-up-right-dots" style="color: #00e676;"></i> Minimum Bid Increments
+          </h4>
+          <div class="rules-table-container" style="margin-bottom: 0;">
+            <table class="rules-table">
+              <thead>
+                <tr>
+                  <th>Current High Bid Range</th>
+                  <th style="text-align: right;">Minimum Increase</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>5 – 499 DKP</td>
+                  <td style="text-align: right; font-weight: 700; color: #00e676;">+50 DKP</td>
+                </tr>
+                <tr>
+                  <td>500 – 999 DKP</td>
+                  <td style="text-align: right; font-weight: 700; color: #00e676;">+100 DKP</td>
+                </tr>
+                <tr>
+                  <td>1,000 – 1,999 DKP</td>
+                  <td style="text-align: right; font-weight: 700; color: #00e676;">+200 DKP</td>
+                </tr>
+                <tr>
+                  <td>2,000+ DKP</td>
+                  <td style="text-align: right; font-weight: 700; color: #00e676;">+300 DKP</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3.4 Earning DKP (Boss Rewards) -->
+      <h3 style="color: var(--gold-light); font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fa-solid fa-trophy" style="color: var(--gold-primary);"></i> 3.4 Earning DKP: Boss Kill Rewards &amp; First Kills
+      </h3>
+      <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 1.25rem;">
+        DKP points are rewarded per completed encounter and progression achievement across 25-man raid schedules (Wednesday, Friday, Monday):
+      </p>
+
+      <div class="rules-table-container">
+        <table class="rules-table">
+          <thead>
+            <tr>
+              <th>Raid &amp; Boss Encounter</th>
+              <th>Difficulty Tier</th>
+              <th style="text-align: center;">Standard Kill Reward</th>
+              <th style="text-align: center; color: var(--gold-light);">1st Kill Bonus</th>
+              <th style="text-align: right;">Raid Days</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Full Normal Raid</strong></td>
+              <td>ICC 25 Normal</td>
+              <td style="text-align: center; font-weight: 700; color: #00e676;">100 DKP</td>
+              <td style="text-align: center; color: var(--text-muted);">&mdash;</td>
+              <td style="text-align: right; color: var(--text-secondary);">Wed / Fri / Mon</td>
+            </tr>
+            <tr>
+              <td><strong>8 / 12 Heroic Clear</strong></td>
+              <td>ICC 25 Heroic</td>
+              <td style="text-align: center; font-weight: 700; color: #00e676;">250 DKP</td>
+              <td style="text-align: center; color: var(--text-muted);">&mdash;</td>
+              <td style="text-align: right; color: var(--text-secondary);">Main Progression</td>
+            </tr>
+            <tr>
+              <td><strong>Lady Deathwhisper (LDW)</strong></td>
+              <td>ICC 25 Heroic</td>
+              <td style="text-align: center; font-weight: 700; color: #00e676;">75 DKP</td>
+              <td style="text-align: center; font-weight: 700; color: var(--gold-light);">150 DKP</td>
+              <td style="text-align: right; color: var(--text-secondary);">Wed / Fri</td>
+            </tr>
+            <tr>
+              <td><strong>Professor Putricide (PP)</strong></td>
+              <td>ICC 25 Heroic</td>
+              <td style="text-align: center; font-weight: 700; color: #00e676;">50 DKP</td>
+              <td style="text-align: center; font-weight: 700; color: var(--gold-light);">100 DKP</td>
+              <td style="text-align: right; color: var(--text-secondary);">Wed / Fri / Mon</td>
+            </tr>
+            <tr>
+              <td><strong>Sindragosa</strong></td>
+              <td>ICC 25 Heroic</td>
+              <td style="text-align: center; font-weight: 700; color: #00e676;">75 DKP</td>
+              <td style="text-align: center; font-weight: 700; color: var(--gold-light);">150 DKP</td>
+              <td style="text-align: right; color: var(--text-secondary);">Wed / Fri</td>
+            </tr>
+            <tr>
+              <td><strong>The Lich King (LK)</strong></td>
+              <td>ICC 25 Heroic</td>
+              <td style="text-align: center; font-weight: 700; color: #00e676;">150 DKP</td>
+              <td style="text-align: center; font-weight: 700; color: var(--gold-light);">250 DKP</td>
+              <td style="text-align: right; color: var(--text-secondary);">Wed (Progression)</td>
+            </tr>
+            <tr>
+              <td><strong>Halion (Ruby Sanctum)</strong></td>
+              <td>RS 25 Normal</td>
+              <td style="text-align: center; font-weight: 700; color: #00e676;">100 DKP</td>
+              <td style="text-align: center; color: var(--text-muted);">&mdash;</td>
+              <td style="text-align: right; color: var(--text-secondary);">Weekly Clear</td>
+            </tr>
+            <tr>
+              <td><strong>Halion (Ruby Sanctum)</strong></td>
+              <td>RS 25 Heroic</td>
+              <td style="text-align: center; font-weight: 700; color: #00e676;">300 DKP</td>
+              <td style="text-align: center; font-weight: 700; color: var(--gold-light);">450 DKP</td>
+              <td style="text-align: right; color: var(--text-secondary);">Heroic Clear</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 3.5 Bench & Penalties -->
+      <h3 style="color: var(--gold-light); font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fa-solid fa-triangle-exclamation" style="color: #ef5350;"></i> 3.5 Bench, Standby &amp; Penalties
+      </h3>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 1.5rem;">
+        <!-- Benched Players -->
+        <div style="background: rgba(13, 16, 23, 0.7); border: 1px solid rgba(0, 230, 118, 0.35); padding: 1.25rem; border-radius: 6px;">
+          <h4 style="color: #00e676; font-family: var(--font-heading); font-size: 1rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-chair"></i> Benched &amp; Standby Raiders
+          </h4>
+          <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.7; margin: 0;">
+            If requested to sit out on standby, claim <strong style="color: #00e676;">+75 DKP</strong> immediately, plus guaranteed <strong>priority invite for the next raid of the same type</strong>.<br>
+            <em style="color: var(--text-muted); font-size: 0.84rem;">*Exception: RS Marathon runs grant next-raid priority only (no +75 bench DKP).</em>
+          </p>
+        </div>
+
+        <!-- Mistakes & Deductions -->
+        <div style="background: rgba(13, 16, 23, 0.7); border: 1px solid rgba(239, 83, 80, 0.35); padding: 1.25rem; border-radius: 6px;">
+          <h4 style="color: #ef5350; font-family: var(--font-heading); font-size: 1rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-skull"></i> Raid Mistakes &amp; Deductions
+          </h4>
+          <ul style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.7; padding-left: 1.2rem; margin: 0;">
+            <li><strong>Minor Mistakes:</strong> Tolerated once. Repeating the same mistake results in <span class="penalty-tag">-50 DKP</span> per occurrence.</li>
+            <li><strong>Major Wipe Mistakes:</strong> Critical failures causing a full raid wipe incur <span class="penalty-tag">-100 DKP</span>.</li>
+            <li><strong>Officer Review:</strong> Officers determine penalties. Do not argue during raid pulls; disputes are discussed constructively after the raid.</li>
+          </ul>
+        </div>
+
+        <!-- Leaving Early & Disconnects -->
+        <div style="background: rgba(13, 16, 23, 0.7); border: 1px solid rgba(255, 171, 64, 0.35); padding: 1.25rem; border-radius: 6px;">
+          <h4 style="color: #ffab40; font-family: var(--font-heading); font-size: 1rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-door-open"></i> Leaving Early &amp; Disconnects
+          </h4>
+          <ul style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.7; padding-left: 1.2rem; margin: 0;">
+            <li><strong>Leaving Early Unannounced:</strong> Penalized with <span class="penalty-tag">-100 DKP</span>. Real life always comes first—simply notify a Raid Leader before leaving to avoid any penalty.</li>
+            <li><strong>Disconnects &amp; Technical Issues:</strong> Technical problems are <strong>not penalized</strong>. Please send a quick message in Discord or phone to keep the raid leader informed.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3.6 Blackwing DKP Cap -->
+      <div style="background: linear-gradient(135deg, rgba(220, 190, 0, 0.12), rgba(13, 16, 23, 0.85)); border: 1px solid var(--gold-primary); padding: 1.35rem 1.6rem; border-radius: 6px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h4 style="color: var(--gold-light); font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-crown" style="color: var(--gold-primary);"></i> 3.6 Blackwing 10,000 DKP Cap
+          </h4>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0; max-width: 780px;">
+            There is a strict maximum cap of <strong style="color: var(--gold-light);">10,000 DKP</strong> per account. Once you reach 10,000 DKP, you will cease earning additional DKP until you spend points on gear or upgrades.
+            Be sure to monitor your balance regularly and invest your points to prevent losing out on raid rewards!
+          </p>
+        </div>
+        <div>
+          <span style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 700; color: var(--gold-light); border: 2px solid var(--gold-primary); padding: 0.4rem 1rem; border-radius: 6px; display: inline-block;">
+            10,000 CAP
+          </span>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 1.75rem;">
+        <a href="dkp.html" class="btn-primary" style="padding: 0.85rem 2rem; font-size: 0.95rem;">
+          <i class="fa-solid fa-coins"></i> Inspect Live DKP Standings Table
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p class="footer-copy">&copy; 2026 Blackwing Guild. GitHub Pages Ready.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>
