@@ -70,7 +70,6 @@
           <li class="nav-item"><a href="raids.html" class="nav-link"><i class="fa-solid fa-dungeon"></i> Raid Info</a></li>
           <li class="nav-item"><a href="dkp.html" class="nav-link"><i class="fa-solid fa-coins"></i> DKP Ladder</a></li>
           <li class="nav-item"><a href="progression.html" class="nav-link"><i class="fa-solid fa-trophy"></i> Progression</a></li>
-          <li class="nav-item"><a href="roster.html" class="nav-link"><i class="fa-solid fa-users-gear"></i> Roster</a></li>
         </ul>
       </nav>
 
@@ -101,7 +100,7 @@
           Please provide accurate character and alt information. An officer will review your application within 24-48 hours.
         </p>
 
-        <form id="applyForm" onsubmit="event.preventDefault(); alert('Application submitted! (This demo can be connected to your Discord Webhook or Google Form in the next step).');">
+        <form id="applyForm">
           <div class="form-row">
             <div class="form-group">
               <label class="form-label" for="charName">Main Character Name &bull; Realm</label>
@@ -194,5 +193,59 @@
   </footer>
 
   <script src="js/main.js"></script>
+
+
+<script>
+document.getElementById("applyForm").addEventListener("submit", async function (event) {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+  const submitButton = form.querySelector('button[type="submit"]');
+  const originalText = submitButton.innerHTML;
+
+  const data = {
+    charName: document.getElementById("charName").value,
+    charClass: document.getElementById("charClass").value,
+    alt1Name: document.getElementById("alt1Name").value,
+    alt1Spec: document.getElementById("alt1Spec").value,
+    alt2Name: document.getElementById("alt2Name").value,
+    alt2Spec: document.getElementById("alt2Spec").value,
+    discordTag: document.getElementById("discordTag").value,
+    experience: document.getElementById("experience").value.trim() || "Not provided"
+  };
+
+  submitButton.disabled = true;
+  submitButton.textContent = "Submitting...";
+
+  try {
+    const response = await fetch(
+      "https://blackwing-application-relay.blackwingwarmane.workers.dev/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error(result.error || "Application submission failed");
+    }
+
+    alert("Application submitted successfully! Our officers will review it within 24-48 hours.");
+    form.reset();
+  } catch (error) {
+    console.error("Application submission error:", error);
+    alert("Could not submit your application. Please try again later or contact an officer on Discord.");
+  } finally {
+    submitButton.disabled = false;
+    submitButton.innerHTML = originalText;
+  }
+});
+</script>
+
 </body>
 </html>
