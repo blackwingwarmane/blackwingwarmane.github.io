@@ -516,6 +516,7 @@
         submitBtn.disabled = true;
         submitBtn.style.opacity = "0.55";
         submitBtn.style.cursor = "not-allowed";
+        submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Application to Officers';
         showBanner(
           `<i class="fa-solid fa-hourglass-half"></i> <strong>Cooldown Active:</strong> You recently submitted an application. To prevent spam, please wait <strong>${remainingMinutes} minute(s)</strong> before submitting another.`,
           "warning"
@@ -528,6 +529,7 @@
       submitBtn.disabled = false;
       submitBtn.style.opacity = "1";
       submitBtn.style.cursor = "pointer";
+      submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Application to Officers';
       hideBanner();
       return false;
     }
@@ -646,9 +648,11 @@
         );
         generateMathChallenge();
       } finally {
+        submitBtn.innerHTML = originalBtnHtml;
         if (!checkCooldown()) {
           submitBtn.disabled = false;
-          submitBtn.innerHTML = originalBtnHtml;
+          submitBtn.style.opacity = "1";
+          submitBtn.style.cursor = "pointer";
         }
       }
     });
